@@ -19,6 +19,9 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	//Botones
 	private JButton botonStart = new JButton();
 	private JButton botonSettings = new JButton();
+	private JButton botonVolumenOn = new JButton();
+	private JButton botonVolumenOff = new JButton();
+	private JButton botonBackAj = new JButton();
 		
 	
 	//CONSTRUCTORES
@@ -50,6 +53,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		//Ajustes
 		panelAjustes.setBounds(0,0,1100,800);
+		panelAjustes.setLayout(null);
 		add(panelAjustes);
 		panelAjustes.setVisible(false);
 		
@@ -67,6 +71,33 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		add(botonSettings);
 		botonSettings.addActionListener(this);	
 		
+		//Volume On
+		botonVolumenOn.setBounds(550,198,120,50);
+		botonVolumenOn.setOpaque(false);
+		botonVolumenOn.setContentAreaFilled(false);
+		botonVolumenOn.setBorderPainted(false);
+		botonVolumenOn.setFocusPainted(false);
+		panelAjustes.add(botonVolumenOn);
+		botonVolumenOn.addActionListener(this);
+		
+		//Volume Off
+		botonVolumenOff.setBounds(680, 198, 120, 50);
+		botonVolumenOff.setOpaque(false);
+		botonVolumenOff.setContentAreaFilled(false);
+		botonVolumenOff.setBorderPainted(false);
+		botonVolumenOff.setFocusPainted(false);
+		panelAjustes.add(botonVolumenOff);
+		botonVolumenOff.addActionListener(this);
+		
+		//Back Ajustes
+		botonBackAj.setBounds(430,625 ,240 ,70);
+		botonBackAj.setOpaque(false);
+		botonBackAj.setContentAreaFilled(false);
+		botonBackAj.setBorderPainted(false);
+		botonBackAj.setFocusPainted(false);
+		panelAjustes.add(botonBackAj);
+		botonBackAj.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
@@ -79,6 +110,20 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelInicio.setVisible(false);
 			panelAjustes.setVisible(true);
 		}
+		
+		if(e.getSource() == botonVolumenOn) {
+			
+		}
+		
+		if(e.getSource() == botonVolumenOff) {
+			
+		}
+		
+		if(e.getSource() == botonBackAj) {
+			panelAjustes.setVisible(false);
+			panelInicio.setVisible(true);
+		}
+		
 	}
 	
 }
