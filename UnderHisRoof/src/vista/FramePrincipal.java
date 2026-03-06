@@ -10,7 +10,13 @@ import javax.swing.JFrame;
 public class FramePrincipal extends JFrame implements ActionListener {
 	
 	//ATRIBUTOS
-	private Inicio panel = new Inicio();
+	
+	//Paneles
+	private Inicio panelInicio = new Inicio();
+	private Sotano panelSotano = new Sotano();
+	private Ajustes panelAjustes = new Ajustes();
+	
+	//Botones
 	private JButton botonStart = new JButton();
 	private JButton botonSettings = new JButton();
 		
@@ -30,16 +36,31 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		setLayout(null);
 		
-		panel.setBounds(0,0,1100,800);
+		//Inicio
 		
-		add(panel);
+		panelInicio.setBounds(0,0,1100,800);
+		add(panelInicio);
+		panelInicio.setVisible(true);
 		
-		panel.setVisible(true);
+		//Sótano
+		
+		panelSotano.setBounds(0,0,1100,800);
+		add(panelSotano);
+		panelSotano.setVisible(false);
+		
+		//Ajustes
+		panelAjustes.setBounds(0,0,1100,800);
+		add(panelAjustes);
+		panelAjustes.setVisible(false);
+		
+		//Start Game
 		
 		botonStart.setBounds(350,555,400,100);
 		botonStart.setOpaque(false);
 		add(botonStart);
 		botonStart.addActionListener(this);
+		
+		//Settings
 		
 		botonSettings.setBounds(400,660,300,80);
 		botonSettings.setOpaque(false);
@@ -55,7 +76,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == botonSettings) {
-			
+			panelInicio.setVisible(false);
+			panelAjustes.setVisible(true);
 		}
 	}
 	
