@@ -1,0 +1,62 @@
+package vista;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class FramePrincipal extends JFrame implements ActionListener {
+	
+	//ATRIBUTOS
+	private Inicio panel = new Inicio();
+	private JButton botonStart = new JButton();
+	private JButton botonSettings = new JButton();
+		
+	
+	//CONSTRUCTORES
+	public FramePrincipal() {
+		
+		setTitle("Under His Roof");
+		
+		setBounds(100, 100, 1100, 800);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setLocationRelativeTo(null);
+		
+		setResizable(false);
+		
+		setLayout(null);
+		
+		panel.setBounds(0,0,1100,800);
+		
+		add(panel);
+		
+		panel.setVisible(true);
+		
+		botonStart.setBounds(350,555,400,100);
+		botonStart.setOpaque(true);
+		add(botonStart);
+		botonStart.addActionListener(this);
+		
+		botonStart.setBounds(350,555,400,100);
+		botonStart.setOpaque(true);
+		add(botonStart);
+		botonStart.addActionListener(this);
+		
+		setVisible(true);
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == botonStart) {
+			
+		}
+	}
+	
+}
