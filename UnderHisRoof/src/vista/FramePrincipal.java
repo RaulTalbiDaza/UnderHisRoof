@@ -19,6 +19,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private Inicio panelInicio = new Inicio();
 	private Sotano panelSotano = new Sotano();
 	private Ajustes panelAjustes = new Ajustes();
+	private Habi_Reloj panelReloj = new Habi_Reloj();
 	
 	//Botones
 	private JButton botonStart = new JButton();
@@ -30,6 +31,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton botonSFXOff = new JButton();
 	private JButton botonBrPlus = new JButton();
 	private JButton botonBrMin = new JButton();
+	private JButton puertaSotano = new JButton();
 		
 	
 	//CONSTRUCTORES
@@ -47,15 +49,18 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		setLayout(null);
 		
+		
 		//Inicio
 		
 		panelInicio.setBounds(0,0,1100,800);
+		panelInicio.setLayout(null);
 		add(panelInicio);
 		panelInicio.setVisible(true);
 		
 		//Sótano
 		
 		panelSotano.setBounds(0,0,1100,800);
+		panelSotano.setLayout(null);
 		add(panelSotano);
 		panelSotano.setVisible(false);
 		
@@ -65,18 +70,30 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		add(panelAjustes);
 		panelAjustes.setVisible(false);
 		
+		//Habitación del reloj
+		panelReloj.setBounds(0,0,1100,800);
+		panelReloj.setLayout(null);
+		add(panelReloj);
+		panelReloj.setVisible(false);
+		
 		//Start Game
 		
 		botonStart.setBounds(350,555,400,100);
 		botonStart.setOpaque(false);
-		add(botonStart);
+		botonStart.setContentAreaFilled(false);
+		botonStart.setBorderPainted(false);
+		botonStart.setFocusPainted(false);
+		panelInicio.add(botonStart);
 		botonStart.addActionListener(this);
 		
 		//Settings
 		
 		botonSettings.setBounds(400,660,300,80);
 		botonSettings.setOpaque(false);
-		add(botonSettings);
+		botonSettings.setContentAreaFilled(false);
+		botonSettings.setBorderPainted(false);
+		botonSettings.setFocusPainted(false);
+		panelInicio.add(botonSettings);
 		botonSettings.addActionListener(this);	
 		
 		//Volume On
@@ -142,6 +159,15 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelAjustes.add(botonBrMin);
 		botonBrMin.addActionListener(this);
 		
+		//Puerta Sótano
+		puertaSotano.setBounds(150,55,100,180);
+		puertaSotano.setOpaque(false);
+		puertaSotano.setContentAreaFilled(false);
+		puertaSotano.setBorderPainted(false);
+		puertaSotano.setFocusPainted(false);
+		panelSotano.add(puertaSotano);
+		puertaSotano.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
@@ -150,8 +176,18 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+		if(e.getSource() == botonStart) {
+			panelInicio.setVisible(false);
+			panelAjustes.setVisible(false);
+			panelReloj.setVisible(false);
+			panelSotano.setVisible(true);
+		}
+		
 		if(e.getSource() == botonSettings) {
 			panelInicio.setVisible(false);
+			panelSotano.setVisible(false);
+			panelReloj.setVisible(false);
 			panelAjustes.setVisible(true);
 		}
 		
@@ -189,6 +225,14 @@ public class FramePrincipal extends JFrame implements ActionListener {
                 repaint();
             }
 		}
+		
+		if(e.getSource() == puertaSotano) {
+			panelInicio.setVisible(false);
+			panelAjustes.setVisible(false);
+			panelSotano.setVisible(false);
+			panelReloj.setVisible(true);
+		}
+		
 		
 	}
 	
