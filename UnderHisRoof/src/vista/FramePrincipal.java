@@ -1,6 +1,8 @@
 package vista;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,9 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class FramePrincipal extends JFrame implements ActionListener {
-	
+	private static final long serialVersionUID = 1L;
 	//ATRIBUTOS
 	
+	//Atributos normales
+	private float brillo= 0.0f;
 	//Paneles
 	private Inicio panelInicio = new Inicio();
 	private Sotano panelSotano = new Sotano();
@@ -22,6 +26,10 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton botonVolumenOn = new JButton();
 	private JButton botonVolumenOff = new JButton();
 	private JButton botonBackAj = new JButton();
+	private JButton botonSFXOn = new JButton();
+	private JButton botonSFXOff = new JButton();
+	private JButton botonBrPlus = new JButton();
+	private JButton botonBrMin = new JButton();
 		
 	
 	//CONSTRUCTORES
@@ -72,7 +80,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		botonSettings.addActionListener(this);	
 		
 		//Volume On
-		botonVolumenOn.setBounds(550,198,120,50);
+		botonVolumenOn.setBounds(548,198,120,50);
 		botonVolumenOn.setOpaque(false);
 		botonVolumenOn.setContentAreaFilled(false);
 		botonVolumenOn.setBorderPainted(false);
@@ -97,6 +105,42 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		botonBackAj.setFocusPainted(false);
 		panelAjustes.add(botonBackAj);
 		botonBackAj.addActionListener(this);
+		
+		//SFX On 
+		botonSFXOn.setBounds(548,293,120,50);
+		botonSFXOn.setOpaque(false);
+		botonSFXOn.setContentAreaFilled(false);
+		botonSFXOn.setBorderPainted(false);
+		botonSFXOn.setFocusPainted(false);
+		panelAjustes.add(botonSFXOn);
+		botonSFXOn.addActionListener(this);
+		
+		//SFX Off
+		botonSFXOff.setBounds(680,293,120,50);
+		botonSFXOff.setOpaque(false);
+		botonSFXOff.setContentAreaFilled(false);
+		botonSFXOff.setBorderPainted(false);
+		botonSFXOff.setFocusPainted(false);
+		panelAjustes.add(botonSFXOff);
+		botonSFXOff.addActionListener(this);
+		
+		//Brightness Plus
+		botonBrPlus.setBounds(548,383,120,50);
+		botonBrPlus.setOpaque(false);
+		botonBrPlus.setContentAreaFilled(false);
+		botonBrPlus.setBorderPainted(false);
+		botonBrPlus.setFocusPainted(false);
+		panelAjustes.add(botonBrPlus);
+		botonBrPlus.addActionListener(this);
+		
+		//Brightness Minus
+		botonBrMin.setBounds(680,383,120,50);
+		botonBrMin.setOpaque(false);
+		botonBrMin.setContentAreaFilled(false);
+		botonBrMin.setBorderPainted(false);
+		botonBrMin.setFocusPainted(false);
+		panelAjustes.add(botonBrMin);
+		botonBrMin.addActionListener(this);
 		
 		setVisible(true);
 		
@@ -124,6 +168,38 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelInicio.setVisible(true);
 		}
 		
+		if(e.getSource() == botonSFXOn) {
+			
+		}
+		
+		if(e.getSource() == botonSFXOff) {
+			
+		}
+		
+		if(e.getSource() == botonBrPlus) {
+			if(brillo < 0.6f){
+                brillo += 0.05f;
+                repaint();
+            }
+		}
+		
+		if(e.getSource() == botonBrMin) {
+			if(brillo > 0f){
+                brillo -= 0.05f;
+                repaint();
+            }
+		}
+		
 	}
+	
+	@Override
+    public void paint(Graphics g) {
+        super.paint(g);
+		if(brillo > 0){
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setColor(new Color(0,0,0,brillo));
+            g2.fillRect(0,0,getWidth(),getHeight());
+        }
+    }
 	
 }
