@@ -3,6 +3,7 @@ package vista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -17,6 +18,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private Habi_Reloj panelReloj = new Habi_Reloj();
 	private Pasillo panelPasillo = new Pasillo();
 	private Invernadero panelInvernadero = new Invernadero();
+	private Atico panelAtico = new Atico();
 	
 	//Botones
 	private JButton botonStart = new JButton();
@@ -30,6 +32,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton puertaReloj1 = new JButton();
 	private JButton puertaReloj2 = new JButton();
 	private JButton puertaInv = new JButton();
+	private JButton puertaAtico = new JButton();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -45,6 +48,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		setResizable(false);
 		
 		setLayout(null);
+		
+		setIconImage(new ImageIcon(getClass().getResource("/recursos/icono.png")).getImage());
 		
 		
 		//Inicio
@@ -84,6 +89,12 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelInvernadero.setLayout(null);
 		add(panelInvernadero);
 		panelInvernadero.setVisible(false);
+		
+		//Atico
+		panelAtico.setBounds(0,0,1100,800);
+		panelAtico.setLayout(null);
+		add(panelAtico);
+		panelAtico.setVisible(false);
 		
 		//Start Game
 		
@@ -186,6 +197,15 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelPasillo.add(puertaInv);
 		puertaInv.addActionListener(this);
 		
+		//Puerta Atico en Pasillo Central
+		puertaAtico.setBounds(930,200,130,440);
+		puertaAtico.setOpaque(false);
+		puertaAtico.setContentAreaFilled(false);
+		puertaAtico.setBorderPainted(false);
+		puertaAtico.setFocusPainted(false);
+		panelPasillo.add(puertaAtico);
+		puertaAtico.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
@@ -201,6 +221,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelReloj.setVisible(false);
 			panelPasillo.setVisible(false);
 			panelInvernadero.setVisible(false);
+			panelAtico.setVisible(false);
 			panelSotano.setVisible(true);
 		}
 		
@@ -210,6 +231,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelReloj.setVisible(false);
 			panelPasillo.setVisible(false);
 			panelInvernadero.setVisible(false);
+			panelAtico.setVisible(false);
 			panelAjustes.setVisible(true);
 		}
 		
@@ -227,6 +249,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelSotano.setVisible(false);
 			panelReloj.setVisible(false);
 			panelInvernadero.setVisible(false);
+			panelAtico.setVisible(false);
 			panelInicio.setVisible(true);
 		}
 		
@@ -245,6 +268,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelSotano.setVisible(false);
 			panelPasillo.setVisible(false);
 			panelInvernadero.setVisible(false);
+			panelAtico.setVisible(false);
 			panelReloj.setVisible(true);
 		}
 		
@@ -254,6 +278,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelSotano.setVisible(false);
 			panelReloj.setVisible(false);
 			panelInvernadero.setVisible(false);
+			panelAtico.setVisible(false);
 			panelPasillo.setVisible(true);
 			
 		}
@@ -264,7 +289,18 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelSotano.setVisible(false);
 			panelReloj.setVisible(false);
 			panelPasillo.setVisible(false);
+			panelAtico.setVisible(false);
 			panelInvernadero.setVisible(true);
+		}
+		
+		if (e.getSource() == puertaAtico) {
+			panelInicio.setVisible(false);
+			panelAjustes.setVisible(false);
+			panelSotano.setVisible(false);
+			panelReloj.setVisible(false);
+			panelPasillo.setVisible(false);
+			panelInvernadero.setVisible(false);
+			panelAtico.setVisible(true);
 		}
 
 		
