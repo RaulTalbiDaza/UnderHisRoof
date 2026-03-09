@@ -28,6 +28,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton puertaSotano = new JButton();
 	private JButton puertaReloj1 = new JButton();
 	private JButton puertaReloj2 = new JButton();
+	private JButton puertaInv = new JButton();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -168,6 +169,16 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		puertaReloj2.setFocusPainted(false);
 		panelReloj.add(puertaReloj2);
 		puertaReloj2.addActionListener(this);
+		
+		//Puerta Invernadero en Pasillo Central
+		puertaInv.setBounds(730,270,170,330);
+		puertaInv.setOpaque(false);
+		puertaInv.setContentAreaFilled(false);
+		puertaInv.setBorderPainted(false);
+		puertaInv.setFocusPainted(false);
+		panelPasillo.add(puertaInv);
+		puertaInv.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
