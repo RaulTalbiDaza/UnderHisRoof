@@ -23,6 +23,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private Atico panelAtico = new Atico();
 	private HabiEspejos panelEspejos = new HabiEspejos();
 	private Teatro panelTeatro = new Teatro();
+	private FlechaAtras panelFlecha = new FlechaAtras();
 	
 	//Botones
 	private JButton botonStart = new JButton();
@@ -39,6 +40,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton puertaAtico = new JButton();
 	private JButton puertaEspejos = new JButton();
 	private JButton puertaTeatro = new JButton();
+	private JButton flechaAtras = new JButton();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -62,6 +64,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		
 		//PANELES
+		
+		
 		
 		//Inicio
 		panelInicio.setBounds(0,0,1100,800);
@@ -116,6 +120,13 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelTeatro.setLayout(null);
 		add(panelTeatro);
 		panelTeatro.setVisible(false);
+		
+		//Flecha Atrás
+		panelFlecha.setBounds(0,0,150,100);
+		panelFlecha.setLayout(null);
+		panelFlecha.setVisible(false);
+		
+		
 		
 		//BOTONES
 		
@@ -247,6 +258,15 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelPasillo.add(puertaTeatro);
 		puertaTeatro.addActionListener(this);
 		
+		//Botón flecha atrás
+		flechaAtras.setBounds(32,25,100,40);
+		flechaAtras.setOpaque(false);
+		flechaAtras.setContentAreaFilled(false);
+		flechaAtras.setBorderPainted(false);
+		flechaAtras.setFocusPainted(false);
+		panelFlecha.add(flechaAtras);
+		flechaAtras.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
@@ -319,6 +339,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelReloj.setVisible(true);
+			panelReloj.add(panelFlecha);
+			panelFlecha.setVisible(true);
 			Musica.reproducirPuerta();
 		}
 		
@@ -332,6 +354,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelPasillo.setVisible(true);
+			panelPasillo.add(panelFlecha);
+			panelFlecha.setVisible(true);
 			Musica.reproducirPuerta();
 			
 		}
@@ -346,6 +370,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelInvernadero.setVisible(true);
+			panelInvernadero.add(panelFlecha);
+			panelFlecha.setVisible(true);
 			Musica.reproducirPuerta();
 		}
 		
@@ -359,6 +385,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelInvernadero.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelAtico.setVisible(true);
+			panelAtico.add(panelFlecha);
+			panelFlecha.setVisible(true);
 			Musica.reproducirPuerta();
 		}
 		
@@ -372,6 +400,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelEspejos.setVisible(true);
+			panelEspejos.add(panelFlecha);
+			panelFlecha.setVisible(true);
 			Musica.reproducirPuerta();
 		}
 		
@@ -385,7 +415,86 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(true);
+			panelTeatro.add(panelFlecha);
+			panelFlecha.setVisible(true);
 			Musica.reproducirPuerta();
+		}
+		
+		if (e.getSource() == flechaAtras) {
+			if (panelReloj.isVisible()) {
+				panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelReloj.setVisible(false);
+				panelPasillo.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(true);
+				
+			}else if (panelPasillo.isVisible()) {
+				panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelPasillo.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(false);
+				panelReloj.setVisible(true);
+				panelReloj.add(panelFlecha);
+				panelFlecha.setVisible(true);
+				
+			}else if (panelAtico.isVisible()) {
+				panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(false);
+				panelReloj.setVisible(false);
+				panelPasillo.setVisible(true);
+				panelPasillo.add(panelFlecha);
+				panelFlecha.setVisible(true);
+			}else if(panelEspejos.isVisible()) {
+				panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(false);
+				panelReloj.setVisible(false);
+				panelPasillo.setVisible(true);
+				panelPasillo.add(panelFlecha);
+				panelFlecha.setVisible(true);
+			}else if (panelInvernadero.isVisible()) {
+				panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(false);
+				panelReloj.setVisible(false);
+				panelPasillo.setVisible(true);
+				panelPasillo.add(panelFlecha);
+				panelFlecha.setVisible(true);
+			}else if (panelTeatro.isVisible()) {
+				panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(false);
+				panelReloj.setVisible(false);
+				panelPasillo.setVisible(true);
+				panelPasillo.add(panelFlecha);
+				panelFlecha.setVisible(true);
+			}
+			
 		}
 
 		
