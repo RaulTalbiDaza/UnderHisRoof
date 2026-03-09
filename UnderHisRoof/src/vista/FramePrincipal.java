@@ -15,10 +15,11 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private Inicio panelInicio = new Inicio();
 	private Sotano panelSotano = new Sotano();
 	private Ajustes panelAjustes = new Ajustes();
-	private Habi_Reloj panelReloj = new Habi_Reloj();
+	private HabiReloj panelReloj = new HabiReloj();
 	private Pasillo panelPasillo = new Pasillo();
 	private Invernadero panelInvernadero = new Invernadero();
 	private Atico panelAtico = new Atico();
+	private HabiEspejos panelEspejos = new HabiEspejos();
 	
 	//Botones
 	private JButton botonStart = new JButton();
@@ -33,6 +34,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton puertaReloj2 = new JButton();
 	private JButton puertaInv = new JButton();
 	private JButton puertaAtico = new JButton();
+	private JButton puertaEspejos = new JButton();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -90,11 +92,17 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		add(panelInvernadero);
 		panelInvernadero.setVisible(false);
 		
-		//Atico
+		//Ático
 		panelAtico.setBounds(0,0,1100,800);
 		panelAtico.setLayout(null);
 		add(panelAtico);
 		panelAtico.setVisible(false);
+		
+		//Habitación de los Espejos
+		panelEspejos.setBounds(0,0,1100,800);
+		panelEspejos.setLayout(null);
+		add(panelEspejos);
+		panelEspejos.setVisible(false);
 		
 		//Start Game
 		
@@ -206,6 +214,15 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelPasillo.add(puertaAtico);
 		puertaAtico.addActionListener(this);
 		
+		//Puerta Habitación de los Espejos en Pasillo Central
+		puertaEspejos.setBounds(420,240,250,350);
+		puertaEspejos.setOpaque(false);
+		puertaEspejos.setContentAreaFilled(false);
+		puertaEspejos.setBorderPainted(false);
+		puertaEspejos.setFocusPainted(false);
+		panelPasillo.add(puertaEspejos);
+		puertaEspejos.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
@@ -222,6 +239,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelPasillo.setVisible(false);
 			panelInvernadero.setVisible(false);
 			panelAtico.setVisible(false);
+			panelEspejos.setVisible(false);
 			panelSotano.setVisible(true);
 		}
 		
@@ -232,6 +250,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelPasillo.setVisible(false);
 			panelInvernadero.setVisible(false);
 			panelAtico.setVisible(false);
+			panelEspejos.setVisible(false);
 			panelAjustes.setVisible(true);
 		}
 		
@@ -250,6 +269,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelReloj.setVisible(false);
 			panelInvernadero.setVisible(false);
 			panelAtico.setVisible(false);
+			panelEspejos.setVisible(false);
 			panelInicio.setVisible(true);
 		}
 		
@@ -269,6 +289,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelPasillo.setVisible(false);
 			panelInvernadero.setVisible(false);
 			panelAtico.setVisible(false);
+			panelEspejos.setVisible(false);
 			panelReloj.setVisible(true);
 		}
 		
@@ -279,6 +300,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelReloj.setVisible(false);
 			panelInvernadero.setVisible(false);
 			panelAtico.setVisible(false);
+			panelEspejos.setVisible(false);
 			panelPasillo.setVisible(true);
 			
 		}
@@ -290,6 +312,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelReloj.setVisible(false);
 			panelPasillo.setVisible(false);
 			panelAtico.setVisible(false);
+			panelEspejos.setVisible(false);
 			panelInvernadero.setVisible(true);
 		}
 		
@@ -299,8 +322,20 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelSotano.setVisible(false);
 			panelReloj.setVisible(false);
 			panelPasillo.setVisible(false);
+			panelEspejos.setVisible(false);
 			panelInvernadero.setVisible(false);
 			panelAtico.setVisible(true);
+		}
+		
+		if (e.getSource() == puertaEspejos) {
+			panelInicio.setVisible(false);
+			panelAjustes.setVisible(false);
+			panelSotano.setVisible(false);
+			panelReloj.setVisible(false);
+			panelPasillo.setVisible(false);
+			panelInvernadero.setVisible(false);
+			panelAtico.setVisible(false);
+			panelEspejos.setVisible(true);
 		}
 
 		

@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class Habi_Reloj extends JPanel {
+public class HabiReloj extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
