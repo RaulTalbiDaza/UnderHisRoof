@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import utiles.Musica;
+
 public class FramePrincipal extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	//ATRIBUTOS
@@ -54,6 +56,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		setLayout(null);
 		
 		setIconImage(new ImageIcon(getClass().getResource("/recursos/icono.png")).getImage());
+		
+		Musica.musicaFondo();
 		
 		
 		
@@ -315,6 +319,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelReloj.setVisible(true);
+			Musica.reproducirPuerta();
 		}
 		
 		if (e.getSource() == puertaReloj1 || e.getSource() == puertaReloj2 ) {
@@ -327,6 +332,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelPasillo.setVisible(true);
+			Musica.reproducirPuerta();
 			
 		}
 		
@@ -340,6 +346,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelInvernadero.setVisible(true);
+			Musica.reproducirPuerta();
 		}
 		
 		if (e.getSource() == puertaAtico) {
@@ -352,6 +359,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelInvernadero.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelAtico.setVisible(true);
+			Musica.reproducirPuerta();
 		}
 		
 		if (e.getSource() == puertaEspejos) {
@@ -364,6 +372,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelTeatro.setVisible(false);
 			panelEspejos.setVisible(true);
+			Musica.reproducirPuerta();
 		}
 		
 		if (e.getSource() == puertaTeatro) {
@@ -376,6 +385,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(true);
+			Musica.reproducirPuerta();
 		}
 
 		
