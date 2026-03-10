@@ -25,6 +25,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private Teatro panelTeatro = new Teatro();
 	private FlechaAtras panelFlecha = new FlechaAtras();
 	private AbrirInventario panelAbrirInven = new AbrirInventario();
+	private SotanoOscuro panelSotanoOscuro = new SotanoOscuro();
 	
 	//Botones
 	private JButton botonStart = new JButton();
@@ -131,6 +132,11 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelAbrirInven.setLayout(null);
 		panelAbrirInven.setVisible(false);
 		
+		//Sotano Oscuro
+		panelSotanoOscuro.setBounds(0,0,1100,800);
+		panelSotanoOscuro.setLayout(null);
+		add(panelSotanoOscuro);
+		panelSotanoOscuro.setVisible(false);
 		
 		
 		//BOTONES
@@ -297,10 +303,15 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
-			panelSotano.setVisible(true);
+			panelSotano.setVisible(false);
+			panelSotanoOscuro.setVisible(true);
+			
 			
 			panelSotano.add(panelAbrirInven);
 			panelAbrirInven.setVisible(true);
+			
+			Sotano.introSotano(panelSotanoOscuro, panelSotano);
+			
 		}
 		
 		if(e.getSource() == botonSettings) {
