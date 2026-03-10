@@ -23,17 +23,19 @@ public class Sotano extends JPanel {
 		super.paintChildren(g);
 	}
 	
-	public static void introSotano(SotanoOscuro SotanoOscuro, Sotano Sotano) {
+	public static void introSotano(SotanoOscuro SotanoOscuro, Sotano Sotano, Letras panelLetras) {
 		Musica.gotasAgua();
 		
 		Timer timer = new Timer (1500, e -> {
 			Musica.Audio();
+			panelLetras.setVisible(true);
 		});
 		timer.setRepeats(false);
 		timer.start();
 		
 		Timer timer2 = new Timer (3000, e -> {
 			Musica.Electricidad();
+			panelLetras.setVisible(false);
 		});
 		timer2.setRepeats(false);
 		timer2.start();

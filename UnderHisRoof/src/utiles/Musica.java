@@ -1,5 +1,6 @@
 package utiles;
 
+
 import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
@@ -8,7 +9,11 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineEvent;
 
+import vista.Letras;
+
+
 public class Musica {
+	
 	
 	//Método para reproducir el sonido de abrir una puerta
 	 public static void reproducirPuerta() {
@@ -93,16 +98,12 @@ public class Musica {
 	 public static void Audio() {
 	        try {
 
-	            URL url = Musica.class.getResource("/recursos/audio.wav");
+	        	URL url = Musica.class.getResource("/recursos/audio.wav");
 
 	            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
-
+	            
 	            Clip clip = AudioSystem.getClip();
 	            clip.open(audio);
-	          //Bajar el volumen de la música de fondo
-	            FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-				 control.setValue(-20.0f);
-	            
 	            
 	            clip.start();
 	            

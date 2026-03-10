@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import utiles.Musica;
 
@@ -26,6 +27,11 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private FlechaAtras panelFlecha = new FlechaAtras();
 	private AbrirInventario panelAbrirInven = new AbrirInventario();
 	private SotanoOscuro panelSotanoOscuro = new SotanoOscuro();
+	private Letras panelLetras = new Letras();
+	private MesaSotano panelMesa = new MesaSotano();
+	private PortadaLibro panelPortada = new PortadaLibro();
+	
+	
 	
 	//Botones
 	private JButton botonStart = new JButton();
@@ -44,6 +50,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton puertaTeatro = new JButton();
 	private JButton flechaAtras = new JButton();
 	private JButton abrirInventario = new JButton();
+	private JButton botonMesa = new JButton();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -137,6 +144,18 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelSotanoOscuro.setLayout(null);
 		add(panelSotanoOscuro);
 		panelSotanoOscuro.setVisible(false);
+		
+		//Texto
+		panelLetras.setBounds(374,450,352,100);
+		panelSotanoOscuro.add(panelLetras);
+		panelLetras.setVisible(false);
+		
+		//Mesa sin el diario
+		panelMesa.setBounds(0,0,1100,800);
+		panelMesa.setLayout(null);
+		add(panelMesa);
+		panelMesa.setVisible(false);
+		
 		
 		
 		//BOTONES
@@ -285,6 +304,15 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelAbrirInven.add(abrirInventario);
 		abrirInventario.addActionListener(this);
 		
+		//Botón mesa sótano
+		botonMesa.setBounds(770,370,80,40);
+		botonMesa.setOpaque(false);
+		botonMesa.setContentAreaFilled(false);
+		botonMesa.setBorderPainted(false);
+		botonMesa.setFocusPainted(false);
+		panelSotano.add(botonMesa);
+		botonMesa.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
@@ -306,11 +334,10 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelSotano.setVisible(false);
 			panelSotanoOscuro.setVisible(true);
 			
-			
 			panelSotano.add(panelAbrirInven);
 			panelAbrirInven.setVisible(true);
 			
-			Sotano.introSotano(panelSotanoOscuro, panelSotano);
+			Sotano.introSotano(panelSotanoOscuro, panelSotano, panelLetras);
 			
 		}
 		
@@ -323,6 +350,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
+			panelSotanoOscuro.setVisible(false);
 			panelAjustes.setVisible(true);
 		}
 		
@@ -343,6 +371,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
+			panelSotanoOscuro.setVisible(false);
+
 			panelInicio.setVisible(true);
 		}
 		
@@ -364,6 +394,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
+			panelSotanoOscuro.setVisible(false);
+
 			panelReloj.setVisible(true);
 			
 			panelReloj.add(panelFlecha);
@@ -384,6 +416,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
+			panelSotanoOscuro.setVisible(false);
+
 			panelPasillo.setVisible(true);
 			
 			panelPasillo.add(panelFlecha);
@@ -405,6 +439,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
 			panelTeatro.setVisible(false);
+			panelSotanoOscuro.setVisible(false);
+
 			panelInvernadero.setVisible(true);
 			
 			panelInvernadero.add(panelFlecha);
@@ -425,6 +461,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelEspejos.setVisible(false);
 			panelInvernadero.setVisible(false);
 			panelTeatro.setVisible(false);
+			panelSotanoOscuro.setVisible(false);
+
 			panelAtico.setVisible(true);
 			
 			panelAtico.add(panelFlecha);
@@ -445,6 +483,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelInvernadero.setVisible(false);
 			panelAtico.setVisible(false);
 			panelTeatro.setVisible(false);
+			panelSotanoOscuro.setVisible(false);
+
 			panelEspejos.setVisible(true);
 			
 			panelEspejos.add(panelFlecha);
@@ -465,6 +505,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelInvernadero.setVisible(false);
 			panelAtico.setVisible(false);
 			panelEspejos.setVisible(false);
+			panelSotanoOscuro.setVisible(false);
+
 			panelTeatro.setVisible(true);
 			
 			panelTeatro.add(panelFlecha);
@@ -477,7 +519,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		}
 		
 		if (e.getSource() == flechaAtras) {
-			if (panelReloj.isVisible()) {
+			if (panelReloj.isVisible() || panelMesa.isVisible()) {
 				panelInicio.setVisible(false);
 				panelAjustes.setVisible(false);
 				panelReloj.setVisible(false);
@@ -486,6 +528,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				panelAtico.setVisible(false);
 				panelEspejos.setVisible(false);
 				panelTeatro.setVisible(false);
+				panelSotanoOscuro.setVisible(false);
 				panelSotano.setVisible(true);
 				
 				panelSotano.add(panelAbrirInven);
@@ -500,6 +543,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				panelEspejos.setVisible(false);
 				panelTeatro.setVisible(false);
 				panelSotano.setVisible(false);
+				panelSotanoOscuro.setVisible(false);
+
 				panelReloj.setVisible(true);
 				
 				panelReloj.add(panelFlecha);
@@ -517,6 +562,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				panelTeatro.setVisible(false);
 				panelSotano.setVisible(false);
 				panelReloj.setVisible(false);
+				panelSotanoOscuro.setVisible(false);
+
 				panelPasillo.setVisible(true);
 				
 				panelPasillo.add(panelFlecha);
@@ -534,6 +581,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				panelTeatro.setVisible(false);
 				panelSotano.setVisible(false);
 				panelReloj.setVisible(false);
+				panelSotanoOscuro.setVisible(false);
+
 				panelPasillo.setVisible(true);
 				
 				panelPasillo.add(panelFlecha);
@@ -551,6 +600,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				panelTeatro.setVisible(false);
 				panelSotano.setVisible(false);
 				panelReloj.setVisible(false);
+				panelSotanoOscuro.setVisible(false);
+
 				panelPasillo.setVisible(true);
 				
 				panelPasillo.add(panelFlecha);
@@ -568,6 +619,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				panelTeatro.setVisible(false);
 				panelSotano.setVisible(false);
 				panelReloj.setVisible(false);
+				panelSotanoOscuro.setVisible(false);
+
 				panelPasillo.setVisible(true);
 				
 				panelPasillo.add(panelFlecha);
@@ -575,11 +628,31 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				
 				panelPasillo.add(panelAbrirInven);
 				panelAbrirInven.setVisible(true);
+				
 			}
 		}
 		if (e.getSource() == abrirInventario) {
 			Inventario inventario1 = new Inventario(this, true);
 			inventario1.setVisible(true);
+		}
+		if (e.getSource() == botonMesa) {
+			panelInicio.setVisible(false);
+			panelAjustes.setVisible(false);
+			panelInvernadero.setVisible(false);
+			panelAtico.setVisible(false);
+			panelEspejos.setVisible(false);
+			panelTeatro.setVisible(false);
+			panelSotano.setVisible(false);
+			panelReloj.setVisible(false);
+			panelPasillo.setVisible(false);
+			panelMesa.setVisible(true);
+			
+			panelMesa.add(panelFlecha);
+			panelFlecha.setVisible(true);
+			
+			panelMesa.add(panelAbrirInven);
+			panelAbrirInven.setVisible(true);
+			
 		}
 		
 		
