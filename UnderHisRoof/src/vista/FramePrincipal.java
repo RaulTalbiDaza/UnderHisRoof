@@ -6,13 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
+import utiles.InventarioSistema;
+import utiles.Item;
 import utiles.Musica;
 
 public class FramePrincipal extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	//ATRIBUTOS
+	private int contador = 0;
 	
 	//Paneles
 	private Inicio panelInicio = new Inicio();
@@ -30,6 +32,9 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private Letras panelLetras = new Letras();
 	private MesaSotano panelMesa = new MesaSotano();
 	private PortadaLibro panelPortada = new PortadaLibro();
+	
+	//JDialog
+	Inventario inventario1 = new Inventario(this);
 	
 	
 	
@@ -51,6 +56,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton flechaAtras = new JButton();
 	private JButton abrirInventario = new JButton();
 	private JButton botonMesa = new JButton();
+	private JButton botonPortada = new JButton();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -155,6 +161,12 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelMesa.setLayout(null);
 		add(panelMesa);
 		panelMesa.setVisible(false);
+		
+		//Portada del libro
+		panelPortada.setBounds(170,147,760,506);
+		panelPortada.setLayout(null);
+		add(panelPortada);
+		panelPortada.setVisible(false);
 		
 		
 		
@@ -313,14 +325,25 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelSotano.add(botonMesa);
 		botonMesa.addActionListener(this);
 		
+		//Botón portada Diario
+		botonPortada.setBounds(200,40,420,400);
+		botonPortada.setOpaque(false);
+		botonPortada.setContentAreaFilled(false);
+		botonPortada.setBorderPainted(false);
+		botonPortada.setFocusPainted(false);
+		panelPortada.add(botonPortada);
+		botonPortada.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
-
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		
 		if(e.getSource() == botonStart) {
 			panelInicio.setVisible(false);
@@ -631,29 +654,69 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				
 			}
 		}
+		
 		if (e.getSource() == abrirInventario) {
-			Inventario inventario1 = new Inventario(this, true);
+			inventario1.actualizarInventario();
+
 			inventario1.setVisible(true);
 		}
-		if (e.getSource() == botonMesa) {
-			panelInicio.setVisible(false);
-			panelAjustes.setVisible(false);
-			panelInvernadero.setVisible(false);
-			panelAtico.setVisible(false);
-			panelEspejos.setVisible(false);
-			panelTeatro.setVisible(false);
-			panelSotano.setVisible(false);
-			panelReloj.setVisible(false);
-			panelPasillo.setVisible(false);
-			panelMesa.setVisible(true);
-			
-			panelMesa.add(panelFlecha);
-			panelFlecha.setVisible(true);
-			
-			panelMesa.add(panelAbrirInven);
-			panelAbrirInven.setVisible(true);
+		
+		
+		if (contador < 1) {
+			if (e.getSource() == botonMesa) {
+				panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(false);
+				panelReloj.setVisible(false);
+				panelPasillo.setVisible(false);
+				panelMesa.setVisible(true);
+				
+				panelMesa.add(panelFlecha);
+				panelFlecha.setVisible(true);
+				
+				panelMesa.add(panelAbrirInven);
+				panelAbrirInven.setVisible(true);
+				
+				panelMesa.add(panelPortada);
+				panelPortada.setVisible(true);
+			}
+		}else {
+			if (e.getSource() == botonMesa) {
+				panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(false);
+				panelReloj.setVisible(false);
+				panelPasillo.setVisible(false);
+				panelMesa.setVisible(true);
+				
+				panelMesa.add(panelFlecha);
+				panelFlecha.setVisible(true);
+				
+				panelMesa.add(panelAbrirInven);
+				panelAbrirInven.setVisible(true);
+			}
+		}
+		
+		
+		if (e.getSource() == botonPortada) {
+			contador ++;
+			panelPortada.setVisible(false);
+			InventarioSistema.inventario.add(
+				    new Item("Diario", "/recursos/portada de diario.png")
+				);
+
+				botonPortada.setVisible(false);
 			
 		}
+		
 		
 		
 	}	

@@ -1,57 +1,73 @@
 package vista;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
+import utiles.InventarioSistema;
+import utiles.Item;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
+public class Inventario extends JDialog {
 
-public class Inventario extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	
-	private InventarioPanel panelInventario = new InventarioPanel();
-	
-	private JButton botonVolver = new JButton();
-	
-	
-	public Inventario(FramePrincipal parent, boolean modal){
-		
-		super(parent, modal);
-		
-		setTitle("Under His Roof");
-		
-		setBounds(100, 100, 1100, 800);
-		
-		setLocationRelativeTo(null);
-		
-		setResizable(false);
-		
-		setLayout(null);
-		
-		setIconImage(new ImageIcon(getClass().getResource("/recursos/icono.png")).getImage());
-		
-		panelInventario.setBounds(0,0,1100,800);
-		panelInventario.setLayout(null);
-		add(panelInventario);
-		panelInventario.setVisible(true);
-		
-		botonVolver.setBounds(450,640,200,60);
-		botonVolver.setOpaque(false);
-		botonVolver.setContentAreaFilled(false);
-		botonVolver.setBorderPainted(false);
-		botonVolver.setFocusPainted(false);
-		panelInventario.add(botonVolver);
-		botonVolver.addActionListener(this);
-	}
+	private JPanel fondo;
+    private JPanel grid;
 
+    public Inventario(JFrame parent) {
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getSource() == botonVolver) {
-			setVisible(false);
-		}
-	}
-	
+        super(parent, true);
+        setSize(900,700);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setLayout(null);
+
+        // fondo con la imagen
+        fondo = new JPanel(){
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                Image img = new ImageIcon(getClass().getResource("/recursos/inventario.png")).getImage();
+                g.drawImage(img,0,0,getWidth(),getHeight(),this);
+            }
+        };
+
+        fondo.setBounds(0,0,900,700);
+        fondo.setLayout(null);
+        add(fondo);
+
+        // panel de los objetos
+        grid = new JPanel(new GridLayout(3,3,10,0));
+        grid.setOpaque(false);
+
+        grid.setBounds(60,150,460,380); // posición aproximada de los huecos
+        fondo.add(grid);
+
+        // botón invisible CLOSE
+        JButton cerrar = new JButton();
+        cerrar.setBounds(360,550,200,70);
+        cerrar.setOpaque(false);
+        cerrar.setContentAreaFilled(false);
+        cerrar.setBorderPainted(false);
+
+        cerrar.addActionListener(e -> setVisible(false));
+
+        fondo.add(cerrar);
+    }
+
+    // actualizar inventario
+    public void actualizarInventario(){
+
+        grid.removeAll();
+
+        for(Item item : InventarioSistema.inventario){
+
+            ImageIcon icon = new ImageIcon(getClass().getResource(item.getRutaImagen()));
+
+            Image img = icon.getImage().getScaledInstance(120,80,Image.SCALE_SMOOTH);
+
+            JLabel label = new JLabel(new ImageIcon(img));
+
+            grid.add(label);
+        }
+
+        grid.revalidate();
+        grid.repaint();
+    }
 }
