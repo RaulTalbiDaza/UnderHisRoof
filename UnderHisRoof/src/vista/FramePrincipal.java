@@ -655,11 +655,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			}
 		}
 		
-		if (e.getSource() == abrirInventario) {
-			inventario1.actualizarInventario();
-
-			inventario1.setVisible(true);
-		}
+		
 		
 		
 		if (contador < 1) {
@@ -683,6 +679,14 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				
 				panelMesa.add(panelPortada);
 				panelPortada.setVisible(true);
+				
+				
+			}
+			
+			if (e.getSource() == abrirInventario) {
+				inventario1.actualizarInventario();
+				inventario1.setVisible(true);
+			
 			}
 		}else {
 			if (e.getSource() == botonMesa) {
@@ -702,8 +706,17 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				
 				panelMesa.add(panelAbrirInven);
 				panelAbrirInven.setVisible(true);
+				
+				
+				
+			}
+			if (e.getSource() == abrirInventario) {
+				inventario1.actualizarInventario();
+				inventario1.setVisible(true);
+			
 			}
 		}
+		
 		
 		
 		if (e.getSource() == botonPortada) {
