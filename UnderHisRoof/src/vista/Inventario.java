@@ -41,7 +41,6 @@ public class Inventario extends JDialog implements ActionListener{
         // panel de los objetos
         grid = new JPanel(new GridLayout(3,3,8,8));
         grid.setOpaque(false);
-        grid.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 
         grid.setBounds(273, 180, 550, 400);
         fondo.add(grid);
@@ -57,7 +56,8 @@ public class Inventario extends JDialog implements ActionListener{
         cerrar.setBounds(450,630,200,70);
         cerrar.setOpaque(false);
         cerrar.setContentAreaFilled(false);
-        cerrar.setBorderPainted(false);
+		cerrar.setBorderPainted(false);
+		cerrar.setFocusPainted(false);
 
         cerrar.addActionListener(e -> setVisible(false));
 
@@ -73,9 +73,9 @@ public class Inventario extends JDialog implements ActionListener{
         fondo.add(botonDiario);
         
         paginaClose.setBounds(450,610,200,70);
-        botonDiario.setOpaque(false);
-        botonDiario.setContentAreaFilled(false);
-        botonDiario.setBorderPainted(false);
+        paginaClose.setOpaque(false);
+        paginaClose.setContentAreaFilled(false);
+        paginaClose.setBorderPainted(false);
         paginaClose.addActionListener(this);
         panelPagina1.add(paginaClose);
         
@@ -84,42 +84,60 @@ public class Inventario extends JDialog implements ActionListener{
     // actualizar inventario
     public void actualizarInventario(){
 
-        grid.removeAll();
-        
-        boolean tieneDiario = false;
-        for (Item item : InventarioSistema.inventario) {
-            if (item.getNombre().equals("Diario")) {
-                tieneDiario = true;
-                break;
-            }
-        }
-        botonDiario.setVisible(tieneDiario);
-        
-        for (int i = 0; i < 9; i++) {
-            JLabel celda = new JLabel();
-            celda.setOpaque(false); // transparente para ver la imagen de fondo
-            grid.add(celda);
-        }
+    	 grid.removeAll();
 
-        // Ahora poner los items encima de las celdas correspondientes
-        int i = 0;
-        for (Item item : InventarioSistema.inventario) {
-            if (i >= 9) break;
-            
-            ImageIcon icon = new ImageIcon(getClass().getResource(item.getRutaImagen()));
-            Image img = icon.getImage().getScaledInstance(120, 80, Image.SCALE_SMOOTH);
-            
-            // Reemplazar la celda vacía con el item
-            grid.remove(i);
-            JLabel label = new JLabel(new ImageIcon(img));
-            label.setHorizontalAlignment(JLabel.CENTER);
-            label.setVerticalAlignment(JLabel.CENTER);
-            grid.add(label, i); // añadir en la posición exacta
-            i++;
-        }
+    	    boolean tieneDiario = false;
+    	    int posicionDiario = -1;
 
-        grid.revalidate();
-        grid.repaint();
+    	    // Buscar posición del diario en el inventario
+    	    for (int j = 0; j < InventarioSistema.inventario.size(); j++) {
+    	        if (InventarioSistema.inventario.get(j).getNombre().equals("Diario")) {
+    	            tieneDiario = true;
+    	            posicionDiario = j;
+    	            break;
+    	        }
+    	    }
+
+    	    // Calcular coordenadas de la celda del diario y mover el botón
+    	    if (tieneDiario && posicionDiario >= 0) {
+    	        int columnas = 3;
+    	        int anchoCelda = grid.getWidth() / columnas;
+    	        int altoCelda = grid.getHeight() / 3;
+
+    	        int fila = posicionDiario / columnas;
+    	        int columna = posicionDiario % columnas;
+
+    	        int x = grid.getX() + (columna * anchoCelda);
+    	        int y = grid.getY() + (fila * altoCelda);
+
+    	        botonDiario.setBounds(x, y, anchoCelda, altoCelda);
+    	        botonDiario.setVisible(true);
+    	    } else {
+    	        botonDiario.setVisible(false);
+    	    }
+
+    	    // Resto del código igual...
+    	    for (int i = 0; i < 9; i++) {
+    	        JLabel celda = new JLabel();
+    	        celda.setOpaque(false);
+    	        grid.add(celda);
+    	    }
+
+    	    int i = 0;
+    	    for (Item item : InventarioSistema.inventario) {
+    	        if (i >= 9) break;
+    	        ImageIcon icon = new ImageIcon(getClass().getResource(item.getRutaImagen()));
+    	        Image img = icon.getImage().getScaledInstance(item.getAnchoImagen(), item.getAltoImagen(), Image.SCALE_SMOOTH);
+    	        grid.remove(i);
+    	        JLabel label = new JLabel(new ImageIcon(img));
+    	        label.setHorizontalAlignment(JLabel.CENTER);
+    	        label.setVerticalAlignment(JLabel.CENTER);
+    	        grid.add(label, i);
+    	        i++;
+    	    }
+
+    	    grid.revalidate();
+    	    grid.repaint();
     }
 
 	@Override
