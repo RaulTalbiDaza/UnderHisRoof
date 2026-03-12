@@ -19,22 +19,39 @@ public class CandadoCe extends JPanel {
     private final String codigoCorrecto = "842";
     private JLabel displayCodigo;
     private JLabel mensajeLabel;
+    private JPanel fondo = new JPanel() {
+    	public void paint(Graphics g) {
+    		Dimension dimension = this.getSize();
+    		ImageIcon icon = new ImageIcon(getClass().getResource("/recursos/candado cerrado.png"));
+    		g.drawImage(icon.getImage(), 0,0, dimension.width, dimension.height, null);
+    		setOpaque(false);
+    		super.paintChildren(g);
+    	}
+    };
+    
+    public JPanel getFondo() {
+        return fondo;
+    }
+    
+    public interface CodigoListener {
+        void onCodigoCorrecto();
+    }
+    private CodigoListener listener;
+    
 	
 	public CandadoCe() {
         setLayout(null);
         setOpaque(false);
 
         // Fondo con la imagen del candado
-        JPanel fondo = new JPanel() {
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Image img = new ImageIcon(getClass().getResource("/recursos/candado cerrado.png")).getImage();
-                g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
+       
+        
+        
         fondo.setLayout(null);
         fondo.setBounds(0, 0, 1100, 800);
         add(fondo);
+        
+        
 
         // Display que muestra el código introducido - ponlo encima del candado
         displayCodigo = new JLabel("_ _ _", JLabel.CENTER);
@@ -53,29 +70,31 @@ public class CandadoCe extends JPanel {
         // Botones invisibles encima de los números del candado
         // Ajusta los bounds según donde estén los números en tu imagen
         int[][] posiciones = {
-            {415, 340, 85, 80},  // 1
-            {510, 340, 85, 80},  // 2
-            {605, 340, 85, 80},  // 3
-            {415, 430, 85, 80},  // 4
-            {510, 430, 85, 80},  // 5
-            {605, 430, 85, 80},  // 6
-            {415, 520, 85, 80},  // 7
-            {510, 520, 85, 80},  // 8
-            {605, 520, 85, 80},  // 9
+            {415, 350, 85, 80},  // 1
+            {510, 350, 85, 80},  // 2
+            {605, 350, 85, 80},  // 3
+            {415, 440, 85, 80},  // 4
+            {510, 440, 85, 80},  // 5
+            {605, 440, 85, 80},  // 6
+            {415, 530, 85, 80},  // 7
+            {510, 530, 85, 80},  // 8
+            {605, 530, 85, 80},  // 9
         };
 
+        
         String[] numeros = {"1","2","3","4","5","6","7","8","9"};
-
         for (int i = 0; i < 9; i++) {
-            JButton boton = new JButton(numeros[i]); // <- ponle el número visible
-            boton.setBounds(posiciones[i][0], posiciones[i][1], posiciones[i][2], posiciones[i][3]);
-            boton.setOpaque(false);                    // <- visible
-            boton.setContentAreaFilled(false);         // <- visible
-            boton.setBorderPainted(false);             // <- visible
-            boton.setFocusPainted(false);
-            final String numero = numeros[i];
-            boton.addActionListener(e -> introducirDigito(numero));
-            fondo.add(boton);
+        	JButton boton = new JButton(); // sin texto
+        	boton.setBounds(posiciones[i][0], posiciones[i][1], posiciones[i][2], posiciones[i][3]);
+        	boton.setOpaque(false);
+        	boton.setContentAreaFilled(false);
+        	boton.setBorderPainted(false);
+        	boton.setFocusPainted(false);
+        	
+        	final String numero = numeros[i];
+        	
+        	boton.addActionListener(e -> introducirDigito(numero));
+        	fondo.add(boton);
         }
     }
 
@@ -94,11 +113,9 @@ public class CandadoCe extends JPanel {
     }
 
     private void comprobarCodigo() {
-        if (codigoIntroducido.equals(codigoCorrecto)) {
+    	if (codigoIntroducido.equals(codigoCorrecto)) {
             mostrarMensaje("¡Código correcto!", Color.GREEN);
-            // Aquí añade lo que pase al acertar, por ejemplo:
-            // setVisible(false);
-            // panelCandadoAbierto.setVisible(true);
+            if (listener != null) listener.onCodigoCorrecto();
         } else {
             mostrarMensaje("Código incorrecto", Color.RED);
             codigoIntroducido = "";
@@ -121,6 +138,10 @@ public class CandadoCe extends JPanel {
     private void mostrarMensaje(String mensaje, Color color) {
         mensajeLabel.setForeground(color);
         mensajeLabel.setText(mensaje);
+    }
+    
+    public void setCodigoListener(CodigoListener listener) {
+        this.listener = listener;
     }
 
 }

@@ -19,7 +19,7 @@ public class Inventario extends JDialog implements ActionListener{
 
     public Inventario(JFrame parent) {
 
-        super(parent, true);
+        super(parent, false);
         setSize(1100,800);
         setResizable(false);
         setLocationRelativeTo(null);
