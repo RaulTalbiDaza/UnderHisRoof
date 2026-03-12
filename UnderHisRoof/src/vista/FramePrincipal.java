@@ -35,6 +35,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private PortadaLibro panelPortada = new PortadaLibro();
 	private TableroCon panelTablero = new TableroCon();
 	private Llave panelLlave = new Llave();
+	private Caja panelCaja = new Caja();
+	private CandadoCe panelCandCerr = new CandadoCe();
 	
 	//JDialog
 	Inventario inventario1 = new Inventario(this);
@@ -62,6 +64,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton botonPortada = new JButton();
 	private JButton botonTablero = new JButton();
 	private JButton botonLlave = new JButton();
+	private JButton botonCaja = new JButton();
+	private JButton botonCandado = new JButton ();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -185,6 +189,17 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		add(panelLlave);
 		panelLlave.setVisible(false);
 		
+		//Panel de las cajas
+		panelCaja.setBounds(0,0,1100,800);
+		panelCaja.setLayout(null);
+		add(panelCaja);
+		panelCaja.setVisible(false);
+		
+		//Panel del candado cerrado
+		panelCandCerr.setBounds(0,0,1100,800);
+		panelCandCerr.setLayout(null);
+		add(panelCandCerr);
+		panelCandCerr.setVisible(false);
 		
 		
 		//BOTONES
@@ -368,6 +383,24 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		botonLlave.setFocusPainted(false);
 		panelLlave.add(botonLlave);
 		botonLlave.addActionListener(this);
+		
+		//Botón para ver la caja
+		botonCaja.setBounds(35,480,160,170);
+		botonCaja.setOpaque(false);
+		botonCaja.setContentAreaFilled(false);
+		botonCaja.setBorderPainted(false);
+		botonCaja.setFocusPainted(false);
+		panelSotano.add(botonCaja);
+		botonCaja.addActionListener(this);
+		
+		//Botón para ver el candado de cerca 
+		botonCandado.setBounds(340,430,150,120);
+		botonCandado.setOpaque(false);
+		botonCandado.setContentAreaFilled(false);
+		botonCandado.setBorderPainted(false);
+		botonCandado.setFocusPainted(false);
+		panelCaja.add(botonCandado);
+		botonCandado.addActionListener(this);
 		
 		
 		setVisible(true);
@@ -578,7 +611,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		}
 		
 		if (e.getSource() == flechaAtras) {
-			if (panelReloj.isVisible() || panelMesa.isVisible() || panelTablero.isVisible()) {
+			if (panelReloj.isVisible() || panelMesa.isVisible() || panelTablero.isVisible() || panelCaja.isVisible() || panelCandCerr.isVisible()) {
 				panelInicio.setVisible(false);
 				panelAjustes.setVisible(false);
 				panelReloj.setVisible(false);
@@ -809,6 +842,54 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			
 			}
 		}
+		 if (e.getSource() == botonCaja) {
+			 panelInicio.setVisible(false);
+				panelAjustes.setVisible(false);
+				panelInvernadero.setVisible(false);
+				panelAtico.setVisible(false);
+				panelEspejos.setVisible(false);
+				panelTeatro.setVisible(false);
+				panelSotano.setVisible(false);
+				panelReloj.setVisible(false);
+				panelPasillo.setVisible(false);
+				panelMesa.setVisible(false);
+				panelTablero.setVisible(false);
+				
+				panelCaja.setVisible(true);
+				
+				panelCaja.add(panelFlecha);
+				panelFlecha.setVisible(true);
+				
+				panelCaja.add(panelAbrirInven);
+				panelAbrirInven.setVisible(true);
+				
+				
+		 }
+		 
+		 if (e.getSource() == botonCandado) {
+			 
+			 panelInicio.setVisible(false);
+			 panelAjustes.setVisible(false);
+			 panelInvernadero.setVisible(false);
+			 panelAtico.setVisible(false);
+			 panelEspejos.setVisible(false);
+			 panelTeatro.setVisible(false);
+			 panelSotano.setVisible(false);
+			 panelReloj.setVisible(false);
+			 panelPasillo.setVisible(false);
+			 panelMesa.setVisible(false);
+			 panelTablero.setVisible(false);
+			 panelCaja.setVisible(false);
+			 
+			 panelCandCerr.setVisible(true);
+			 
+			 panelCandCerr.add(panelFlecha);
+			 panelFlecha.setVisible(true);
+				
+			 panelCandCerr.add(panelAbrirInven);
+			 panelAbrirInven.setVisible(true);
+				
+		 }
 		
 		
 		
