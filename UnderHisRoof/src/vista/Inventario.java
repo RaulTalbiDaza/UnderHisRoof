@@ -13,9 +13,12 @@ public class Inventario extends JDialog implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private JPanel fondo;
     private JPanel grid;
+    private Pagina2 panelPag2 = new Pagina2();
     private JButton botonDiario = new JButton();
     private  Pagina1 panelPagina1 = new Pagina1();
     private JButton paginaClose = new JButton();
+    private boolean sotanoCompletado = false;
+    JButton cerrar2 = new JButton();
 
     public Inventario(JFrame parent) {
 
@@ -50,6 +53,23 @@ public class Inventario extends JDialog implements ActionListener{
         panelPagina1.setLayout(null);
         add(panelPagina1);
         panelPagina1.setVisible(false);
+        
+        panelPag2.setBounds(0,0,1100,800);
+        panelPag2.setLayout(null);
+        add(panelPag2);
+        panelPag2.setVisible(false);
+        
+        
+        
+        cerrar2.setBounds(450,630,200,70);
+        cerrar2.setOpaque(false);
+        cerrar2.setContentAreaFilled(false);
+		cerrar2.setBorderPainted(false);
+		cerrar2.setFocusPainted(false);
+
+        cerrar2.addActionListener(this);
+        
+        panelPag2.add(cerrar2);
 
         
         JButton cerrar = new JButton();
@@ -144,12 +164,27 @@ public class Inventario extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == botonDiario) {
-			fondo.setVisible(false);
-			panelPagina1.setVisible(true);
+		    if (sotanoCompletado) {
+		        fondo.setVisible(false);
+		        panelPag2.setVisible(true);
+		    } else {
+		        fondo.setVisible(false);
+		        panelPagina1.setVisible(true);
+		    }
 		}
 		if (e.getSource() == paginaClose) {
 			panelPagina1.setVisible(false);
 			fondo.setVisible(true);
 		}
+		
+		if (e.getSource() == cerrar2) {
+			panelPag2.setVisible(false);
+			fondo.setVisible(true);
+			
+		}
+	}
+	
+	public void setSotanoCompletado(boolean valor) {
+	    this.sotanoCompletado = valor;
 	}
 }
