@@ -56,9 +56,11 @@ public class Musica {
 		 try {
 		        URL url = Musica.class.getResource("/recursos/gotas.wav");
 		        AudioInputStream audio = AudioSystem.getAudioInputStream(url);
-		        clipGotas = AudioSystem.getClip();
-		        clipGotas.open(audio);
-		        clipGotas.loop(Clip.LOOP_CONTINUOUSLY);
+		        Clip clip = AudioSystem.getClip();
+		        clip.open(audio);
+		        FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	            control.setValue(-20.0f);
+		        clip.loop(Clip.LOOP_CONTINUOUSLY);
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
@@ -95,6 +97,8 @@ public class Musica {
 	            
 	            Clip clip = AudioSystem.getClip();
 	            clip.open(audio);
+	            FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	            control.setValue(-20.0f);
 	            
 	            clip.start();
 	            
@@ -131,12 +135,115 @@ public class Musica {
 
 		            Clip clip = AudioSystem.getClip();
 		            clip.open(audio);
+		            FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		            control.setValue(-20.0f);
 		            clip.start();
 		            
 		        } catch (Exception e) {
 		            e.printStackTrace();
 		        }
 		 }
+		 
+		 public static void clicBoton() {
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/presionar-boton.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            clip.start();
+		            
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		 }
+		 
+		 public static void valvulaSound() {
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/valvula-sonido.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            clip.start();
+		            
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		 }
+		 
+		 public static void cogerObjeto() {
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/coger-objeto.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            clip.start();
+		            
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		 }
+		 
+		 public static void candadoAbierto() {
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/candado-abierto.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            clip.start();
+		            
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		 }
+		 
+		 public static void puertaAbCheck() {
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/apertura-abierta.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            clip.start();
+		            
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		 }
+		 
+		 public static void llaveTuerca() {
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/llave inglesa.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            clip.start();
+		            
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		 }
+		 
+		 
+		 
+		 
+		 
 		 public static void silenciarGotas() {
 			    if (clipGotas != null && clipGotas.isRunning()) {
 			        clipGotas.stop();

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import utiles.InventarioSistema;
 import utiles.Item;
@@ -559,6 +560,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			
 			panelSotano.add(panelAbrirInven);
 			panelAbrirInven.setVisible(true);
+			Musica.musicaFondo();
 			
 			Sotano.introSotano(panelSotanoOscuro, panelSotano, panelLetras);
 			
@@ -877,6 +879,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		if (e.getSource() == botonPortada) {
 			diarioRecogido = true;
+			Musica.cogerObjeto();
 		    panelPortada.setVisible(false);
 		    InventarioSistema.inventario.add(
 		        new Item("Diario", "/recursos/portada de diario.png")
@@ -887,6 +890,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		if (e.getSource() == botonLlave) {
 			llaveRecogida = true;
+			Musica.cogerObjeto();
 		    panelLlave.setVisible(false);
 		    InventarioSistema.inventario.add(
 		        new Item("Llave Inglesa", "/recursos/llave.png", 25, 111)
@@ -1066,6 +1070,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			 panelCajaAb.add(panelValvIncl);
 			 panelValvIncl.setVisible(true);
 			 
+			 
 		 }
 		 
 		
@@ -1075,6 +1080,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		 if (e.getSource() == cogerValv) {
 			 	valvRecogida = true;
 			    panelValvIncl.setVisible(false);
+			    Musica.cogerObjeto();
 			    InventarioSistema.inventario.add(
 			        new Item("Válvula", "/recursos/valv_incl.png")
 			    );
@@ -1155,6 +1161,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			        apretarTuerca.setVisible(false); // oculta el botón tras apretar
 			        ponerValv.setVisible(true);
 			        eliminarItem("Llave Inglesa");
+			        Musica.llaveTuerca();
 			    }
 		}
 		 
@@ -1165,6 +1172,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			        panelSotano.add(panelValvFr);
 			        panelValvFr.setVisible(true);
 			        eliminarItem("Válvula");
+			        Musica.valvulaSound();
 			        Musica.silenciarGotas();
 			        
 			    }
@@ -1175,12 +1183,22 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				 botonVerde = true;
 				 panelAlcanAb.setVisible(false);
 				 panelBotonVerde.setVisible(true);
+				 Musica.clicBoton();
 				 
 				 panelBotonVerde.add(panelFlecha);
 				 panelFlecha.setVisible(true);
 					
 				 panelBotonVerde.add(panelAbrirInven);
 				 panelAbrirInven.setVisible(true);
+				 
+				 Timer timer = new Timer (1000, i -> {
+					 Musica.puertaAbCheck();
+					
+				});
+					timer.setRepeats(false);
+					timer.start();
+				 
+				 
 				 
 				 apretarBoton.setVisible(false);
 				 

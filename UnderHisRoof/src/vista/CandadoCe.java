@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import utiles.Musica;
+
 public class CandadoCe extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -113,6 +115,7 @@ public class CandadoCe extends JPanel {
     private void comprobarCodigo() {
     	if (codigoIntroducido.equals(codigoCorrecto)) {
             mostrarMensaje("¡Código correcto!", Color.GREEN);
+            Musica.candadoAbierto();
             if (listener != null) listener.onCodigoCorrecto();
         } else {
             mostrarMensaje("Código incorrecto", Color.RED);
