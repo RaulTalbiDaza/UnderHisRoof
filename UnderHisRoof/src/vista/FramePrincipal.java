@@ -14,11 +14,14 @@ import utiles.Musica;
 public class FramePrincipal extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	//ATRIBUTOS
-	private int contadorDiario = 0;
-	private int contadorLlaveIng = 0;
-	private int contadorValv = 1;
+	private boolean diarioRecogido = false;
+	private boolean llaveRecogida = false;
+	private boolean valvRecogida = false;
 	private boolean candadoAbierto = false;
 	private boolean alcantarillaAbierta = false;
+	private boolean tuercaApretada = false;
+	private boolean valvPuesta = false;
+	private boolean botonVerde = false;
 	
 	//Paneles
 	private Inicio panelInicio = new Inicio();
@@ -45,6 +48,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private ValvIncl panelValvIncl = new ValvIncl();
 	private AlcanCerr panelAlcanCerr = new AlcanCerr();
 	private AlcanAb panelAlcanAb = new AlcanAb();
+	private ValvFr panelValvFr = new ValvFr();
+	private BotonVerde panelBotonVerde = new BotonVerde();
 	
 	//JDialog
 	Inventario inventario1 = new Inventario(this);
@@ -78,6 +83,9 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton cogerValv = new JButton();
 	private JButton alcantarilla = new JButton();
 	private JButton abrirAlcan = new JButton();
+	private JButton ponerValv = new JButton();
+	private JButton apretarTuerca = new JButton();
+	private JButton apretarBoton = new JButton();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -249,6 +257,18 @@ public class FramePrincipal extends JFrame implements ActionListener {
         panelAlcanAb.setLayout(null);
         add(panelAlcanAb);
         panelAlcanAb.setVisible(false);
+        
+        //Válvula de frente
+        panelValvFr.setBounds(355,340,105,70);
+        panelValvFr.setLayout(null);
+        add(panelValvFr);
+        panelValvFr.setVisible(false);
+        
+        //Panel con el botón en verde
+        panelBotonVerde.setBounds(0,0,1100,800);
+        panelBotonVerde.setLayout(null);
+        add(panelBotonVerde);
+        panelBotonVerde.setVisible(false);
 		
 		//BOTONES
 		
@@ -486,6 +506,34 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelAlcanCerr.add(abrirAlcan);
 		abrirAlcan.addActionListener(this);
 		
+		//Botón para apretar tuerca
+		apretarTuerca.setBounds(385,340,50,60);
+		apretarTuerca.setOpaque(false);
+		apretarTuerca.setContentAreaFilled(false);
+		apretarTuerca.setBorderPainted(false);
+		apretarTuerca.setFocusPainted(false);
+		panelSotano.add(apretarTuerca);
+		apretarTuerca.addActionListener(this);
+		
+		
+		//Botón para poner la válvula
+		ponerValv.setBounds(385,340,50,60);
+		ponerValv.setOpaque(false);
+		ponerValv.setContentAreaFilled(false);
+		ponerValv.setBorderPainted(false);
+		ponerValv.setFocusPainted(false);
+		panelSotano.add(ponerValv);
+		ponerValv.addActionListener(this);
+		
+		//Boton alcantarilla
+		apretarBoton.setBounds(470,300,150,150);
+		apretarBoton.setOpaque(false);
+		apretarBoton.setContentAreaFilled(false);
+		apretarBoton.setBorderPainted(false);
+		apretarBoton.setFocusPainted(false);
+		panelAlcanAb.add(apretarBoton);
+		apretarBoton.addActionListener(this);
+		
 		setVisible(true);
 		
 	}
@@ -561,6 +609,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		
 		if(e.getSource() == puertaSotano) {
+			if (!botonVerde) return;
 			panelInicio.setVisible(false);
 			panelAjustes.setVisible(false);
 			panelSotano.setVisible(false);
@@ -695,7 +744,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		if (e.getSource() == flechaAtras) {
 			if (panelReloj.isVisible() || panelMesa.isVisible() || panelTablero.isVisible() || panelCaja.isVisible() || panelCandCerr.isVisible() || 
-				panelCajaAb.isVisible() || panelAlcanCerr.isVisible() || panelAlcanAb.isVisible()) {
+				panelCajaAb.isVisible() || panelAlcanCerr.isVisible() || panelAlcanAb.isVisible() || panelBotonVerde.isVisible()) {
 				panelInicio.setVisible(false);
 				panelAjustes.setVisible(false);
 				panelReloj.setVisible(false);
@@ -763,7 +812,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		
 		
-		if (contadorDiario < 1) {
+		if (!diarioRecogido) {
 			if (e.getSource() == botonMesa) {
 				panelInicio.setVisible(false);
 				panelAjustes.setVisible(false);
@@ -827,23 +876,23 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		
 		if (e.getSource() == botonPortada) {
-			contadorDiario ++;
-			panelPortada.setVisible(false);
-			InventarioSistema.inventario.add(
-				    new Item("Diario", "/recursos/portada de diario.png")
-				);
-
-				botonPortada.setVisible(false);
+			diarioRecogido = true;
+		    panelPortada.setVisible(false);
+		    InventarioSistema.inventario.add(
+		        new Item("Diario", "/recursos/portada de diario.png")
+		    );
+		    botonPortada.setVisible(false);
 			
 		}
 		
 		if (e.getSource() == botonLlave) {
-			contadorLlaveIng ++;
-			panelLlave.setVisible(false);
-			InventarioSistema.inventario.add(
-				    new Item("Llave Inglesa", "/recursos/llave.png", 25, 111)
-				);
-			botonLlave.setVisible(false);
+			llaveRecogida = true;
+		    panelLlave.setVisible(false);
+		    InventarioSistema.inventario.add(
+		        new Item("Llave Inglesa", "/recursos/llave.png", 25, 111)
+		    );
+		    botonLlave.setVisible(false);
+		    
 		}
 		
 		if (e.getSource() == botonTablero) {
@@ -867,7 +916,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			panelAbrirInven.setVisible(true);
 		}
 		
-		if (contadorLlaveIng < 1) {
+		if (!llaveRecogida) {
 			if (e.getSource() == botonTablero) {
 				panelInicio.setVisible(false);
 				panelAjustes.setVisible(false);
@@ -1019,104 +1068,17 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			 
 		 }
 		 
-		 if (contadorValv < 1) {
-				if (e.getSource() == botonCaja) {
-					if (!candadoAbierto) {
-				        // Si el candado NO está abierto, mostrar el candado cerrado
-				        panelInicio.setVisible(false);
-				        panelAjustes.setVisible(false);
-				        panelInvernadero.setVisible(false);
-				        panelAtico.setVisible(false);
-				        panelEspejos.setVisible(false);
-				        panelTeatro.setVisible(false);
-				        panelSotano.setVisible(false);
-				        panelReloj.setVisible(false);
-				        panelPasillo.setVisible(false);
-				        panelMesa.setVisible(false);
-				        panelTablero.setVisible(false);
-				        panelCaja.setVisible(false);
-
-				        panelCandCerr.setVisible(true);
-
-				        panelCandCerr.getFondo().add(panelFlecha);
-				        panelFlecha.setVisible(true);
-
-				        panelCandCerr.getFondo().add(panelAbrirInven);
-				        panelAbrirInven.setVisible(true);
-				        
-				    }else {
-				    	 panelInicio.setVisible(false);
-						 panelAjustes.setVisible(false);
-						 panelInvernadero.setVisible(false);
-						 panelAtico.setVisible(false);
-						 panelEspejos.setVisible(false);
-						 panelTeatro.setVisible(false);
-						 panelSotano.setVisible(false);
-						 panelReloj.setVisible(false);
-						 panelPasillo.setVisible(false);
-						 panelMesa.setVisible(false);
-						 panelTablero.setVisible(false);
-						 panelCaja.setVisible(false);
-						 panelCandCerr.setVisible(false);
-						 panelCandadoAb.setVisible(false);
-						 
-						 panelCajaAb.setVisible(true);
-						 
-						 panelCajaAb.add(panelFlecha);
-						 panelFlecha.setVisible(true);
-							
-						 panelCajaAb.add(panelAbrirInven);
-						 panelAbrirInven.setVisible(true);
-						 
-						 panelCajaAb.add(panelValvIncl);
-						 panelValvIncl.setVisible(true);
-				    }
-				
-				if (e.getSource() == abrirInventario) {
-					inventario1.actualizarInventario();
-					inventario1.setVisible(true);
-				
-				}
-			}else {
-				if (e.getSource() == botonCaja) {
-					panelInicio.setVisible(false);
-					panelAjustes.setVisible(false);
-					panelInvernadero.setVisible(false);
-					panelAtico.setVisible(false);
-					panelEspejos.setVisible(false);
-					panelTeatro.setVisible(false);
-					panelSotano.setVisible(false);
-					panelReloj.setVisible(false);
-					panelPasillo.setVisible(false);
-					panelTablero.setVisible(false);
-					panelMesa.setVisible(false);
-					panelCaja.setVisible(false);
-					panelCandCerr.setVisible(false);
-					panelCandadoAb.setVisible(false);
-					panelCajaAb.setVisible(true);
-					
-					panelCajaAb.add(panelFlecha);
-					panelFlecha.setVisible(true);
-					
-					panelCajaAb.add(panelAbrirInven);
-					panelAbrirInven.setVisible(true);
-					
-					
-					
-				}
 		
+			
 		
-		
-			}
-		
-	}
+	
 		 if (e.getSource() == cogerValv) {
-				contadorValv ++;
-				panelValvIncl.setVisible(false);
-				InventarioSistema.inventario.add(
-					    new Item("Válvula", "/recursos/valv_incl.png")
-					);
-				cogerValv.setVisible(false);
+			 	valvRecogida = true;
+			    panelValvIncl.setVisible(false);
+			    InventarioSistema.inventario.add(
+			        new Item("Válvula", "/recursos/valv_incl.png")
+			    );
+			    cogerValv.setVisible(false);
 			}
 		 if (e.getSource() == alcantarilla) {
 			    panelInicio.setVisible(false);
@@ -1135,15 +1097,20 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			    panelCandadoAb.setVisible(false);
 			    panelCajaAb.setVisible(false);
 
-			    if (alcantarillaAbierta) {
-			        // Ir directamente a la alcantarilla abierta
+			    if (botonVerde) {
+			        
+			        panelBotonVerde.setVisible(true);
+			        panelBotonVerde.add(panelFlecha);
+			        panelFlecha.setVisible(true);
+			        panelBotonVerde.add(panelAbrirInven);
+			        panelAbrirInven.setVisible(true);
+			    } else if (alcantarillaAbierta) {
 			        panelAlcanAb.setVisible(true);
 			        panelAlcanAb.add(panelFlecha);
 			        panelFlecha.setVisible(true);
 			        panelAlcanAb.add(panelAbrirInven);
 			        panelAbrirInven.setVisible(true);
 			    } else {
-			        // Mostrar la alcantarilla cerrada
 			        panelAlcanCerr.setVisible(true);
 			        panelAlcanCerr.add(panelFlecha);
 			        panelFlecha.setVisible(true);
@@ -1180,6 +1147,58 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			 panelAbrirInven.setVisible(true);
 			 
 		 }
+		 
+		 if (e.getSource() == apretarTuerca) {
+			    // Solo funciona si tiene la llave inglesa
+			    if (tieneItem("Llave Inglesa")) {
+			        tuercaApretada = true;
+			        apretarTuerca.setVisible(false); // oculta el botón tras apretar
+			        ponerValv.setVisible(true);
+			        eliminarItem("Llave Inglesa");
+			    }
+		}
+		 
+		 if (e.getSource() == ponerValv) {
+			    if (tuercaApretada && tieneItem("Válvula")) {
+			    	valvPuesta = true;
+			        ponerValv.setVisible(false);
+			        panelSotano.add(panelValvFr);
+			        panelValvFr.setVisible(true);
+			        eliminarItem("Válvula");
+			        Musica.silenciarGotas();
+			        
+			    }
+			}
+		 
+		 if (e.getSource() == apretarBoton) {
+			 if(valvPuesta) {
+				 botonVerde = true;
+				 panelAlcanAb.setVisible(false);
+				 panelBotonVerde.setVisible(true);
+				 
+				 panelBotonVerde.add(panelFlecha);
+				 panelFlecha.setVisible(true);
+					
+				 panelBotonVerde.add(panelAbrirInven);
+				 panelAbrirInven.setVisible(true);
+				 
+				 apretarBoton.setVisible(false);
+				 
+			 }
+		 }
+		 
+	}
+	
+	private boolean tieneItem(String nombre) {
+	    for (Item item : InventarioSistema.inventario) {
+	        if (item.getNombre().equals(nombre)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	private void eliminarItem(String nombre) {
+	    InventarioSistema.inventario.removeIf(item -> item.getNombre().equals(nombre));
 	}
 }
 

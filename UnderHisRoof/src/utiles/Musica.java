@@ -10,6 +10,7 @@ import javax.sound.sampled.FloatControl;
 
 
 public class Musica {
+	private static Clip clipGotas;
 	
 	
 	//Método para reproducir el sonido de abrir una puerta
@@ -53,21 +54,14 @@ public class Musica {
 	 //Método para reproducir las gotas de agua
 	 public static void gotasAgua() {
 		 try {
-
-			 URL url = Musica.class.getResource("/recursos/gotas.wav");
-
-			 AudioInputStream audio = AudioSystem.getAudioInputStream(url);
-
-			 Clip clip = AudioSystem.getClip();
-			 clip.open(audio);
-         
-			 
-         
-			 clip.loop(Clip.LOOP_CONTINUOUSLY);
-
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 }
+		        URL url = Musica.class.getResource("/recursos/gotas.wav");
+		        AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+		        clipGotas = AudioSystem.getClip();
+		        clipGotas.open(audio);
+		        clipGotas.loop(Clip.LOOP_CONTINUOUSLY);
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
 	 
 	 }
 	 
@@ -143,6 +137,11 @@ public class Musica {
 		            e.printStackTrace();
 		        }
 		 }
+		 public static void silenciarGotas() {
+			    if (clipGotas != null && clipGotas.isRunning()) {
+			        clipGotas.stop();
+			    }
+			}
 		 
 				 
 		 
