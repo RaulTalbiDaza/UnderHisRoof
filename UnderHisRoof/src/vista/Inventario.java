@@ -13,7 +13,7 @@ public class Inventario extends JDialog implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private JPanel fondo;
     private JPanel grid;
-    private Pagina2 panelPag2 = new Pagina2();
+    private Pag3 panelPag3 = new Pag3();
     private JButton botonDiario = new JButton();
     private  Pagina1 panelPagina1 = new Pagina1();
     private JButton paginaClose = new JButton();
@@ -54,10 +54,10 @@ public class Inventario extends JDialog implements ActionListener{
         add(panelPagina1);
         panelPagina1.setVisible(false);
         
-        panelPag2.setBounds(0,0,1100,800);
-        panelPag2.setLayout(null);
-        add(panelPag2);
-        panelPag2.setVisible(false);
+        panelPag3.setBounds(0,0,1100,800);
+        panelPag3.setLayout(null);
+        add(panelPag3);
+        panelPag3.setVisible(false);
         
         
         
@@ -69,7 +69,7 @@ public class Inventario extends JDialog implements ActionListener{
 
         cerrar2.addActionListener(this);
         
-        panelPag2.add(cerrar2);
+        panelPag3.add(cerrar2);
 
         
         JButton cerrar = new JButton();
@@ -166,7 +166,7 @@ public class Inventario extends JDialog implements ActionListener{
 		if (e.getSource() == botonDiario) {
 		    if (sotanoCompletado) {
 		        fondo.setVisible(false);
-		        panelPag2.setVisible(true);
+		        panelPag3.setVisible(true);
 		    } else {
 		        fondo.setVisible(false);
 		        panelPagina1.setVisible(true);
@@ -178,7 +178,7 @@ public class Inventario extends JDialog implements ActionListener{
 		}
 		
 		if (e.getSource() == cerrar2) {
-			panelPag2.setVisible(false);
+			panelPag3.setVisible(false);
 			fondo.setVisible(true);
 			
 		}

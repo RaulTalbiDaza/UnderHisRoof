@@ -17,13 +17,14 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	//ATRIBUTOS
 	
 	private boolean llaveRecogida = false;
-	private boolean valvRecogida = false;
 	private boolean candadoAbierto = false;
 	private boolean alcantarillaAbierta = false;
 	private boolean tuercaApretada = false;
 	private boolean valvPuesta = false;
 	private boolean botonVerde = false;
 	private boolean puertaStAb = false;
+	private boolean libroAbierto = false;
+	private boolean llaveLibroRecogida = false;
 	
 	//Paneles
 	private Inicio panelInicio = new Inicio();
@@ -51,7 +52,15 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private ValvFr panelValvFr = new ValvFr();
 	private BotonVerde panelBotonVerde = new BotonVerde();
 	private Pagina2 panelPag2 = new Pagina2();
-	
+	private PasarPag panelPasarPag = new PasarPag();
+	private Pag3 panelPag3 =new Pag3();
+	private LibroSuelo panelLibroSuelo = new LibroSuelo();
+	private LibroAb panelLibroAb = new LibroAb();
+	private LlaveCajon panelLlaveCajon = new LlaveCajon();
+	private Cajon panelCajon = new  Cajon();
+	private Reloj panelRelojBol = new Reloj();
+	private RelojRojo panelRelojRojo = new RelojRojo();
+	private RelojVerde panelRelojVerde = new RelojVerde();
 	
 	//JDialog
 	Inventario inventario1 = new Inventario(this);
@@ -67,8 +76,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton botonSFXOn = new JButton();
 	private JButton botonSFXOff = new JButton();
 	private JButton puertaSotano = new JButton();
-	private JButton puertaReloj1 = new JButton();
-	private JButton puertaReloj2 = new JButton();
+	private JButton puertaReloj = new JButton();
 	private JButton puertaInv = new JButton();
 	private JButton puertaAtico = new JButton();
 	private JButton puertaEspejos = new JButton();
@@ -87,7 +95,14 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private JButton apretarTuerca = new JButton();
 	private JButton apretarBoton = new JButton();
 	private JButton cerrarPag2 = new JButton();
-	private JButton libroSuelo1 = new JButton();
+	private JButton libroSuelo = new JButton();
+	private JButton pasarPag = new JButton();
+	private JButton abrirLibro = new JButton();
+	private JButton cogerLlaveLibro = new JButton();
+	private JButton botonCajon = new JButton();
+	private JButton botonReloj = new JButton();
+	private JButton ponerReloj = new JButton();
+	private JButton botonHabRel = new JButton();
 		
 	//CONSTRUCTORES
 	public FramePrincipal() {
@@ -267,8 +282,60 @@ public class FramePrincipal extends JFrame implements ActionListener {
         add(panelPag2);
         panelPag2.setVisible(false);
         
+        //Panel de la flecha para pasar de página
+        panelPasarPag.setBounds(950,350,150,100);
+        panelPasarPag.setLayout(null);
+        add(panelPasarPag);
+        panelPasarPag.setVisible(false);
         
-		
+        //Panel para la pagina 3
+        panelPag3.setBounds(0,0,1100,800);
+        panelPag3.setLayout(null);
+        add(panelPag3);
+        panelPag3.setVisible(false);
+        
+        //Panel del libro del suelo
+        panelLibroSuelo.setBounds(0,0,1100,800);
+        panelLibroSuelo.setLayout(null);
+        add(panelLibroSuelo);
+        panelLibroSuelo.setVisible(false);
+        
+        //Panel del libro abierto
+        panelLibroAb.setBounds(0,0,1100,800);
+        panelLibroAb.setLayout(null);
+        add(panelLibroAb);
+        panelLibroAb.setVisible(false);
+        
+        //Panel de la llave que está en el libro
+        panelLlaveCajon.setBounds(370,300,100,123);
+        panelLlaveCajon.setLayout(null);
+        add(panelLlaveCajon);
+        panelLlaveCajon.setVisible(false);
+        
+        //Panel de la mesita
+        panelCajon.setBounds(0,0,1100,800);
+        panelCajon.setLayout(null);
+        add(panelCajon);
+        panelCajon.setVisible(false);
+        
+        //Panel del reloj del cajón
+        panelRelojBol.setBounds(600,310,100,100);
+        panelRelojBol.setLayout(null);
+        add(panelRelojBol);
+        panelRelojBol.setVisible(false);
+        
+        //Panel de la habitación del reloj con el botón en rojo
+        panelRelojRojo.setBounds(0,0,1100,800);
+        panelRelojRojo.setLayout(null);
+        add(panelRelojRojo);
+        panelRelojRojo.setVisible(false);
+        
+        //Panel de la habitación del reloj con el botón en verde
+        panelRelojVerde.setBounds(0,0,1100,800);
+        panelRelojVerde.setLayout(null);
+        add(panelRelojVerde);
+        panelRelojVerde.setVisible(false);
+        
 		//BOTONES
 		
 		//Start Game
@@ -343,23 +410,16 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelSotano.add(puertaSotano);
 		puertaSotano.addActionListener(this);
 
-		//Puerta Habitación del Reloj 1
-		puertaReloj1.setBounds(90,100,180,550);
-		puertaReloj1.setOpaque(false);
-		puertaReloj1.setContentAreaFilled(false);
-		puertaReloj1.setBorderPainted(false);
-		puertaReloj1.setFocusPainted(false);
-		panelReloj.add(puertaReloj1);
-		puertaReloj1.addActionListener(this);
+		
 		
 		//Puerta Habitación del Reloj 2
-		puertaReloj2.setBounds(830,100,180,550);
-		puertaReloj2.setOpaque(false);
-		puertaReloj2.setContentAreaFilled(false);
-		puertaReloj2.setBorderPainted(false);
-		puertaReloj2.setFocusPainted(false);
-		panelReloj.add(puertaReloj2);
-		puertaReloj2.addActionListener(this);
+		puertaReloj.setBounds(830,100,180,550);
+		puertaReloj.setOpaque(false);
+		puertaReloj.setContentAreaFilled(false);
+		puertaReloj.setBorderPainted(false);
+		puertaReloj.setFocusPainted(false);
+		panelRelojVerde.add(puertaReloj);
+		puertaReloj.addActionListener(this);
 		
 		//Puerta Invernadero en Pasillo Central
 		puertaInv.setBounds(730,270,170,330);
@@ -526,13 +586,76 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		cerrarPag2.addActionListener(this);
 		
 		//Libro de al lado de la mesita
-		libroSuelo1.setBounds(100,720,90,50);
-		libroSuelo1.setOpaque(false);
-		libroSuelo1.setContentAreaFilled(false);
-		libroSuelo1.setBorderPainted(false);
-		libroSuelo1.setFocusPainted(false);
-		panelReloj.add(libroSuelo1);
-		libroSuelo1.addActionListener(this);
+		libroSuelo.setBounds(100,720,90,50);
+		libroSuelo.setOpaque(false);
+		libroSuelo.setContentAreaFilled(false);
+		libroSuelo.setBorderPainted(false);
+		libroSuelo.setFocusPainted(false);
+		panelReloj.add(libroSuelo);
+		libroSuelo.addActionListener(this);
+		
+		//Botón para pasar de página
+		pasarPag.setBounds(0,0,150,100);
+		pasarPag.setOpaque(false);
+		pasarPag.setContentAreaFilled(false);
+		pasarPag.setBorderPainted(false);
+		pasarPag.setFocusPainted(false);
+		panelPasarPag.add(pasarPag);
+		pasarPag.addActionListener(this);
+		
+		//Boton para abrir el libro del suelo
+		abrirLibro.setBounds(300,250,450,350);
+		abrirLibro.setOpaque(false);
+		abrirLibro.setContentAreaFilled(false);
+		abrirLibro.setBorderPainted(false);
+		abrirLibro.setFocusPainted(false);
+		panelLibroSuelo.add(abrirLibro);
+		abrirLibro.addActionListener(this);
+		
+		//Boton para recoger la llave del libro
+		cogerLlaveLibro.setBounds(0,0,100,123);
+		cogerLlaveLibro.setOpaque(false);
+		cogerLlaveLibro.setContentAreaFilled(false);
+		cogerLlaveLibro.setBorderPainted(false);
+		cogerLlaveLibro.setFocusPainted(false);
+		panelLlaveCajon.add(cogerLlaveLibro);
+		cogerLlaveLibro.addActionListener(this);
+		
+		//Botón para abrir el cajón de la mesita
+		botonCajon.setBounds(100,620,200,100);
+		botonCajon.setOpaque(false);
+		botonCajon.setContentAreaFilled(false);
+		botonCajon.setBorderPainted(false);
+		botonCajon.setFocusPainted(false);
+		panelReloj.add(botonCajon);
+		botonCajon.addActionListener(this);
+		
+		//Boton para recoger el reloj
+		botonReloj.setBounds(0,0,100,100);
+		botonReloj.setOpaque(false);
+		botonReloj.setContentAreaFilled(false);
+		botonReloj.setBorderPainted(false);
+		botonReloj.setFocusPainted(false);
+		panelRelojBol.add(botonReloj);
+		botonReloj.addActionListener(this);
+		
+		//Botón para poner el reloj en el hueco
+		ponerReloj.setBounds(500,490,100,100);
+		ponerReloj.setOpaque(false);
+		ponerReloj.setContentAreaFilled(false);
+		ponerReloj.setBorderPainted(false);
+		ponerReloj.setFocusPainted(false);
+		panelReloj.add(ponerReloj);
+		ponerReloj.addActionListener(this);
+		
+		//Botón para abrir la puerta de la habitación del reloj
+		botonHabRel.setBounds(500,590,100,100);
+		botonHabRel.setOpaque(false);
+		botonHabRel.setContentAreaFilled(false);
+		botonHabRel.setBorderPainted(false);
+		botonHabRel.setFocusPainted(false);
+		panelRelojRojo.add(botonHabRel);
+		botonHabRel.addActionListener(this);
 		
 		setVisible(true);
 		
@@ -628,6 +751,9 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		        panelSotanoOscuro.setVisible(false);
 		        panelReloj.setVisible(false);
 		        panelPag2.setVisible(true);
+		        
+		        panelPag2.add(panelPasarPag);
+		        panelPasarPag.setVisible(true);
 		        Musica.reproducirPuerta();
 		    } else {
 		        panelInicio.setVisible(false);
@@ -650,7 +776,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		}
 		
 		
-		if (e.getSource() == puertaReloj1 || e.getSource() == puertaReloj2 ) {
+		if (e.getSource() == puertaReloj ) {
 			panelInicio.setVisible(false);
 			panelAjustes.setVisible(false);
 			panelSotano.setVisible(false);
@@ -764,7 +890,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		if (e.getSource() == flechaAtras) {
 			 if (panelTablero.isVisible() || panelCaja.isVisible() || panelCandCerr.isVisible() || 
 				        panelCajaAb.isVisible() || panelAlcanCerr.isVisible() || panelAlcanAb.isVisible() || 
-				        panelBotonVerde.isVisible()) {
+				        panelBotonVerde.isVisible() || panelRelojRojo.isVisible()) {
 				        // Volver al sótano desde subpaneles del sótano
 				        panelTablero.setVisible(false);
 				        panelCaja.setVisible(false);
@@ -787,9 +913,11 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				        panelSotano.add(panelAbrirInven);
 				        panelAbrirInven.setVisible(true);
 
-				    } else if (panelPasillo.isVisible()) {
+				    } else if (panelPasillo.isVisible() || panelLibroSuelo.isVisible() || panelLibroAb.isVisible()) {
 				        // Volver al reloj desde el pasillo
+				    	
 				        panelPasillo.setVisible(false);
+				        panelLibroSuelo.setVisible(false);
 				        panelReloj.setVisible(true);
 
 				        panelReloj.add(panelFlecha);
@@ -1014,7 +1142,6 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 	
 		 if (e.getSource() == cogerValv) {
-			 	valvRecogida = true;
 			    panelValvIncl.setVisible(false);
 			    Musica.cogerObjeto();
 			    InventarioSistema.inventario.add(
@@ -1151,6 +1278,131 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				
 			panelReloj.add(panelAbrirInven);
 			panelAbrirInven.setVisible(true);
+		 }
+		 
+		 if (e.getSource() == libroSuelo) {
+			    panelReloj.setVisible(false);
+			    panelPag3.setVisible(false);
+
+			    if (libroAbierto) {
+			        // Ya estaba abierto, ir directo al libro abierto
+			        panelLibroSuelo.setVisible(false);
+			        panelLibroAb.setVisible(true);
+			        panelLibroAb.add(panelFlecha);
+			        panelFlecha.setVisible(true);
+			        panelLibroAb.add(panelAbrirInven);
+			        panelAbrirInven.setVisible(true);
+
+			        // Solo mostrar la llave si no ha sido recogida
+			        if (!llaveLibroRecogida) {
+			            panelLibroAb.add(panelLlaveCajon);
+			            panelLlaveCajon.setVisible(true);
+			        }
+			    } else {
+			        panelLibroSuelo.setVisible(true);
+			        panelLibroSuelo.add(panelFlecha);
+			        panelFlecha.setVisible(true);
+			        panelLibroSuelo.add(panelAbrirInven);
+			        panelAbrirInven.setVisible(true);
+			    }
+			}
+		 
+		 if (e.getSource() == pasarPag) {
+			 panelPag2.setVisible(false);
+			 panelPag3.setVisible(true);
+			 
+			 panelPag3.add(cerrarPag2);
+			 cerrarPag2.setVisible(true);
+		 }
+		 
+		 if(e.getSource() == abrirLibro) {
+			    libroAbierto = true;
+			    panelLibroSuelo.setVisible(false);
+			    panelLibroAb.setVisible(true);
+			    
+			    panelLibroAb.add(panelFlecha);
+			    panelFlecha.setVisible(true);
+			    
+			    panelLibroAb.add(panelAbrirInven);
+			    panelAbrirInven.setVisible(true);
+
+			    if (!llaveLibroRecogida) {
+			        panelLibroAb.add(panelLlaveCajon);
+			        panelLlaveCajon.setVisible(true);
+			    }
+			}
+		 
+		 if (e.getSource() == cogerLlaveLibro) {
+			 llaveLibroRecogida = true;
+			 panelLlaveCajon.setVisible(false);
+			 cogerLlaveLibro.setVisible(false);
+			    Musica.cogerObjeto();
+			    InventarioSistema.inventario.add(
+			        new Item("Llave Cajón", "/recursos/llave-cajon.png", 50,62)
+			    );
+		 }
+		 
+		 
+		 if (e.getSource() == botonCajon) {
+			 if(tieneItem("Llave Cajón")) {
+				 panelReloj.setVisible(false);
+				 panelLibroSuelo.setVisible(false);
+				 panelLibroAb.setVisible(false);
+				 panelCajon.setVisible(true);
+				 
+				    
+				 panelCajon.add(panelAbrirInven);
+				 panelAbrirInven.setVisible(true);
+				 
+				 panelCajon.add(panelRelojBol);
+				 panelRelojBol.setVisible(true);
+				 
+				 
+				 eliminarItem("Llave Cajón");
+			 }
+			 
+			 
+		 }
+		 
+		 if (e.getSource() == botonReloj) {
+			 
+			 panelCajon.setVisible(false);
+			 panelLibroSuelo.setVisible(false);
+			 panelLibroAb.setVisible(false);
+			 panelReloj.setVisible(true);
+			 
+			 InventarioSistema.inventario.add(
+				        new Item("Reloj", "/recursos/reloj.png", 50,50)
+				    );
+			 panelReloj.add(panelFlecha);
+			panelFlecha.setVisible(true);
+					
+			panelReloj.add(panelAbrirInven);
+			panelAbrirInven.setVisible(true);
+		 }
+		 
+		 if (e.getSource() == ponerReloj) {
+			 if(tieneItem("Reloj")) {
+				 panelCajon.setVisible(false);
+				 panelLibroSuelo.setVisible(false);
+				 panelLibroAb.setVisible(false);
+				 panelReloj.setVisible(false);
+				 
+				 
+				 panelRelojRojo.setVisible(true);
+				 panelRelojBol.setBounds(500,470,100,100);
+				 panelRelojRojo.add(panelRelojBol);
+				 panelRelojBol.setVisible(true);
+				 
+				 panelRelojRojo.add(panelFlecha);
+				 panelFlecha.setVisible(true);
+							
+				 panelRelojRojo.add(panelAbrirInven);
+				 panelAbrirInven.setVisible(true);
+				 
+				 eliminarItem("Reloj");
+			 }
+			 
 		 }
 		 
 	}

@@ -56,11 +56,11 @@ public class Musica {
 		 try {
 		        URL url = Musica.class.getResource("/recursos/gotas.wav");
 		        AudioInputStream audio = AudioSystem.getAudioInputStream(url);
-		        Clip clip = AudioSystem.getClip();
-		        clip.open(audio);
-		        FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		        clipGotas= AudioSystem.getClip();
+		        clipGotas.open(audio);
+		        FloatControl control = (FloatControl) clipGotas.getControl(FloatControl.Type.MASTER_GAIN);
 	            control.setValue(-20.0f);
-		        clip.loop(Clip.LOOP_CONTINUOUSLY);
+	            clipGotas.loop(Clip.LOOP_CONTINUOUSLY);
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
