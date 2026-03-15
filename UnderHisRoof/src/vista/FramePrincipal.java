@@ -2,7 +2,6 @@ package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -121,7 +120,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		
 		setLayout(null);
 		
-		setIconImage(new ImageIcon(getClass().getResource("/recursos/icono.png")).getImage());
+		setIconImage(new ImageIcon(getClass().getResource("/recursos/imagenes/icono.png")).getImage());
 		
 		Musica.musicaFondo();
 		
@@ -658,7 +657,9 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		ponerReloj.setVisible(false);
 		ponerReloj.setEnabled(false);
 		add(botonHabRel);
+		botonHabRel.setVisible(false);
 		botonHabRel.addActionListener(this);
+		
 		
 		setVisible(true);
 		
@@ -738,6 +739,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		}
 		
 		if(e.getSource() == puertaSotano) {
+			
 		    if (!botonVerde) return;
 		    
 		    if (!puertaStAb) {
@@ -771,25 +773,31 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		        panelPag2.setVisible(false);
 
 		        if (estadoReloj.equals("verde")) {
+		        	botonHabRel.setVisible(false);
 		            panelRelojVerde.setVisible(true);
 		            panelRelojVerde.add(panelFlecha);
 		            panelFlecha.setVisible(true);
 		            panelRelojVerde.add(panelAbrirInven);
 		            panelAbrirInven.setVisible(true);
 		        } else if (estadoReloj.equals("rojo")) {
+		        	botonHabRel.setVisible(true);
 		            panelRelojRojo.setVisible(true);
 		            panelRelojRojo.add(panelFlecha);
 		            panelFlecha.setVisible(true);
 		            panelRelojRojo.add(panelAbrirInven);
 		            panelAbrirInven.setVisible(true);
-		        } else {
+		            Musica.ticTac();
+		        } else if(estadoReloj.equals("normal")){
+		        	botonHabRel.setVisible(false);
 		            panelReloj.setVisible(true);
 		            panelReloj.add(panelFlecha);
 		            panelFlecha.setVisible(true);
 		            panelReloj.add(panelAbrirInven);
 		            panelAbrirInven.setVisible(true);
+		            Musica.ticTac();
 		        }
 		        Musica.reproducirPuerta();
+		        
 		    }
 		}
 		
@@ -811,6 +819,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		    panelFlecha.setVisible(true);
 		    panelPasillo.add(panelAbrirInven);
 		    panelAbrirInven.setVisible(true);
+		    Musica.silenciarTicTac();
 		    Musica.reproducirPuerta();
 		}
 		
@@ -918,6 +927,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		        panelSotano.setVisible(true);
 		        panelSotano.add(panelAbrirInven);
 		        panelAbrirInven.setVisible(true);
+		        
 
 		    } else if (panelReloj.isVisible() || panelRelojRojo.isVisible() || panelRelojVerde.isVisible()) {
 		        // Volver al sótano desde la habitación del reloj
@@ -927,6 +937,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		        panelSotano.setVisible(true);
 		        panelSotano.add(panelAbrirInven);
 		        panelAbrirInven.setVisible(true);
+		        Musica.silenciarTicTac();
 
 		    } else if (panelPasillo.isVisible() || panelLibroSuelo.isVisible() || panelLibroAb.isVisible()) {
 		    	ponerReloj.setVisible(false);
@@ -1292,6 +1303,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				
 			panelReloj.add(panelAbrirInven);
 			panelAbrirInven.setVisible(true);
+			Musica.ticTac();
 		 }
 		 
 		 if (e.getSource() == libroSuelo) {
@@ -1371,6 +1383,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 				 panelCajon.add(panelRelojBol);
 				 panelRelojBol.setVisible(true);
 				 
+				 Musica.secuenciaCajon();
+				 
 				 
 				 eliminarItem("Llave Cajón");
 			 }
@@ -1382,6 +1396,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			    panelCajon.setVisible(false);
 			    botonReloj.setVisible(false);
 			    panelReloj.setVisible(true);
+			    Musica.cogerObjeto();
 			    
 			    InventarioSistema.inventario.add(
 			        new Item("Reloj", "/recursos/reloj.png", 50, 50)
@@ -1399,6 +1414,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			}
 		 
 		 if (e.getSource() == ponerReloj) {
+			 botonHabRel.setVisible(true);
 			    if (tieneItem("Reloj") && !relojPuesto) {
 			        relojPuesto = true;
 			        ponerReloj.setVisible(false);
@@ -1408,6 +1424,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			        panelCajon.setVisible(false);
 			        panelLibroSuelo.setVisible(false);
 			        panelLibroAb.setVisible(false);
+			        
 
 			        panelRelojRojo.setVisible(true);
 			        panelRelojBol.setBounds(500,470,100,100);
@@ -1423,6 +1440,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 
 			        eliminarItem("Reloj");
 			    }
+			    Musica.ponerReloj();
 			}
 		 
 		 if (e.getSource() == botonHabRel) {
@@ -1431,6 +1449,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			 ponerReloj.setEnabled(false);
 			 panelRelojRojo.setVisible(false);
 			 panelReloj.setVisible(false);
+			 botonHabRel.setVisible(false);
 			 panelRelojVerde.setVisible(true);
 			 
 			 panelRelojVerde.add(panelRelojBol);
@@ -1441,6 +1460,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 						
 			 panelRelojVerde.add(panelAbrirInven);
 			 panelAbrirInven.setVisible(true);
+			 
+			 Musica.silenciarTicTac();
 		 }
 		 
 	}

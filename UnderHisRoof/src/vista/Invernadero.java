@@ -13,7 +13,7 @@ public class Invernadero extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		Dimension dimension = this.getSize();
-		ImageIcon icon = new ImageIcon(getClass().getResource("/recursos/invernader.png"));
+		ImageIcon icon = new ImageIcon(getClass().getResource("/recursos/imagenes/invernader.png"));
 		g.drawImage(icon.getImage(), 0,0, dimension.width, dimension.height, null);
 		setOpaque(false);
 		super.paintChildren(g);
