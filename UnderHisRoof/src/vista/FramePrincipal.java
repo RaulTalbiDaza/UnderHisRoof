@@ -25,6 +25,8 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private boolean puertaStAb = false;
 	private boolean libroAbierto = false;
 	private boolean llaveLibroRecogida = false;
+	private boolean relojPuesto = false;
+	private String estadoReloj = "normal";
 	
 	//Paneles
 	private Inicio panelInicio = new Inicio();
@@ -410,8 +412,6 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		panelSotano.add(puertaSotano);
 		puertaSotano.addActionListener(this);
 
-		
-		
 		//Puerta Habitación del Reloj 2
 		puertaReloj.setBounds(830,100,180,550);
 		puertaReloj.setOpaque(false);
@@ -646,6 +646,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		ponerReloj.setBorderPainted(false);
 		ponerReloj.setFocusPainted(false);
 		panelReloj.add(ponerReloj);
+		ponerReloj.setVisible(false);
 		ponerReloj.addActionListener(this);
 		
 		//Botón para abrir la puerta de la habitación del reloj
@@ -654,7 +655,9 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		botonHabRel.setContentAreaFilled(false);
 		botonHabRel.setBorderPainted(false);
 		botonHabRel.setFocusPainted(false);
-		panelRelojRojo.add(botonHabRel);
+		ponerReloj.setVisible(false);
+		ponerReloj.setEnabled(false);
+		add(botonHabRel);
 		botonHabRel.addActionListener(this);
 		
 		setVisible(true);
@@ -766,37 +769,49 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		        panelTeatro.setVisible(false);
 		        panelSotanoOscuro.setVisible(false);
 		        panelPag2.setVisible(false);
-		        panelReloj.setVisible(true);
-		        panelReloj.add(panelFlecha);
-		        panelFlecha.setVisible(true);
-		        panelReloj.add(panelAbrirInven);
-		        panelAbrirInven.setVisible(true);
+
+		        if (estadoReloj.equals("verde")) {
+		            panelRelojVerde.setVisible(true);
+		            panelRelojVerde.add(panelFlecha);
+		            panelFlecha.setVisible(true);
+		            panelRelojVerde.add(panelAbrirInven);
+		            panelAbrirInven.setVisible(true);
+		        } else if (estadoReloj.equals("rojo")) {
+		            panelRelojRojo.setVisible(true);
+		            panelRelojRojo.add(panelFlecha);
+		            panelFlecha.setVisible(true);
+		            panelRelojRojo.add(panelAbrirInven);
+		            panelAbrirInven.setVisible(true);
+		        } else {
+		            panelReloj.setVisible(true);
+		            panelReloj.add(panelFlecha);
+		            panelFlecha.setVisible(true);
+		            panelReloj.add(panelAbrirInven);
+		            panelAbrirInven.setVisible(true);
+		        }
 		        Musica.reproducirPuerta();
 		    }
 		}
 		
 		
-		if (e.getSource() == puertaReloj ) {
-			panelInicio.setVisible(false);
-			panelAjustes.setVisible(false);
-			panelSotano.setVisible(false);
-			panelReloj.setVisible(false);
-			panelInvernadero.setVisible(false);
-			panelAtico.setVisible(false);
-			panelEspejos.setVisible(false);
-			panelTeatro.setVisible(false);
-			panelSotanoOscuro.setVisible(false);
+		if (e.getSource() == puertaReloj) {
+		    panelRelojVerde.setVisible(false);
+		    panelInicio.setVisible(false);
+		    panelAjustes.setVisible(false);
+		    panelSotano.setVisible(false);
+		    panelReloj.setVisible(false);
+		    panelInvernadero.setVisible(false);
+		    panelAtico.setVisible(false);
+		    panelEspejos.setVisible(false);
+		    panelTeatro.setVisible(false);
+		    panelSotanoOscuro.setVisible(false);
 
-			panelPasillo.setVisible(true);
-			
-			panelPasillo.add(panelFlecha);
-			panelFlecha.setVisible(true);
-			
-			panelPasillo.add(panelAbrirInven);
-			panelAbrirInven.setVisible(true);
-			
-			Musica.reproducirPuerta();
-			
+		    panelPasillo.setVisible(true);
+		    panelPasillo.add(panelFlecha);
+		    panelFlecha.setVisible(true);
+		    panelPasillo.add(panelAbrirInven);
+		    panelAbrirInven.setVisible(true);
+		    Musica.reproducirPuerta();
 		}
 		
 		if (e.getSource() == puertaInv) {
@@ -888,69 +903,72 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		}
 		
 		if (e.getSource() == flechaAtras) {
-			 if (panelTablero.isVisible() || panelCaja.isVisible() || panelCandCerr.isVisible() || 
-				        panelCajaAb.isVisible() || panelAlcanCerr.isVisible() || panelAlcanAb.isVisible() || 
-				        panelBotonVerde.isVisible() || panelRelojRojo.isVisible()) {
-				        // Volver al sótano desde subpaneles del sótano
-				        panelTablero.setVisible(false);
-				        panelCaja.setVisible(false);
-				        panelCajaAb.setVisible(false);
-				        panelCandadoAb.setVisible(false);
-				        panelCandCerr.setVisible(false);
-				        panelAlcanCerr.setVisible(false);
-				        panelAlcanAb.setVisible(false);
-				        panelBotonVerde.setVisible(false);
-				        panelSotano.setVisible(true);
+		    if (panelTablero.isVisible() || panelCaja.isVisible() || panelCandCerr.isVisible() || 
+		        panelCajaAb.isVisible() || panelAlcanCerr.isVisible() || panelAlcanAb.isVisible() || 
+		        panelBotonVerde.isVisible()) {
+		        // Volver al sótano desde subpaneles del sótano
+		        panelTablero.setVisible(false);
+		        panelCaja.setVisible(false);
+		        panelCajaAb.setVisible(false);
+		        panelCandadoAb.setVisible(false);
+		        panelCandCerr.setVisible(false);
+		        panelAlcanCerr.setVisible(false);
+		        panelAlcanAb.setVisible(false);
+		        panelBotonVerde.setVisible(false);
+		        panelSotano.setVisible(true);
+		        panelSotano.add(panelAbrirInven);
+		        panelAbrirInven.setVisible(true);
 
-				        panelSotano.add(panelAbrirInven);
-				        panelAbrirInven.setVisible(true);
+		    } else if (panelReloj.isVisible() || panelRelojRojo.isVisible() || panelRelojVerde.isVisible()) {
+		        // Volver al sótano desde la habitación del reloj
+		        panelReloj.setVisible(false);
+		        panelRelojRojo.setVisible(false);
+		        panelRelojVerde.setVisible(false);
+		        panelSotano.setVisible(true);
+		        panelSotano.add(panelAbrirInven);
+		        panelAbrirInven.setVisible(true);
 
-				    } else if (panelReloj.isVisible()) {
-				        // Volver al sótano desde la habitación del reloj
-				        panelReloj.setVisible(false);
-				        panelSotano.setVisible(true);
+		    } else if (panelPasillo.isVisible() || panelLibroSuelo.isVisible() || panelLibroAb.isVisible()) {
+		    	ponerReloj.setVisible(false);
+		        panelPasillo.setVisible(false);
+		        panelLibroSuelo.setVisible(false);
+		        panelLibroAb.setVisible(false);
+		        ponerReloj.setVisible(false);
+		        ponerReloj.setEnabled(false);
+		        
+		        if (estadoReloj.equals("verde")) {
+		            panelRelojVerde.setVisible(true);
+		            panelRelojVerde.add(panelFlecha);
+		            panelFlecha.setVisible(true);
+		            panelRelojVerde.add(panelAbrirInven);
+		            panelAbrirInven.setVisible(true);
+		        } else if (estadoReloj.equals("rojo")) {
+		            panelRelojRojo.setVisible(true);
+		            panelRelojRojo.add(panelFlecha);
+		            panelFlecha.setVisible(true);
+		            panelRelojRojo.add(panelAbrirInven);
+		            panelAbrirInven.setVisible(true);
+		        } else {
+		            panelReloj.setVisible(true);
+		            panelReloj.add(panelFlecha);
+		            panelFlecha.setVisible(true);
+		            panelReloj.add(panelAbrirInven);
+		            panelAbrirInven.setVisible(true);
+		        }
 
-				        panelSotano.add(panelAbrirInven);
-				        panelAbrirInven.setVisible(true);
-
-				    } else if (panelPasillo.isVisible() || panelLibroSuelo.isVisible() || panelLibroAb.isVisible()) {
-				        // Volver al reloj desde el pasillo
-				    	
-				        panelPasillo.setVisible(false);
-				        panelLibroSuelo.setVisible(false);
-				        panelReloj.setVisible(true);
-
-				        panelReloj.add(panelFlecha);
-				        panelFlecha.setVisible(true);
-
-				        panelReloj.add(panelAbrirInven);
-				        panelAbrirInven.setVisible(true);
-
-				    } else if (panelAtico.isVisible() || panelEspejos.isVisible() || 
-				               panelInvernadero.isVisible() || panelTeatro.isVisible()) {
-				        // Volver al pasillo desde las habitaciones superiores
-				        panelAtico.setVisible(false);
-				        panelEspejos.setVisible(false);
-				        panelInvernadero.setVisible(false);
-				        panelTeatro.setVisible(false);
-				        panelPasillo.setVisible(true);
-
-				        panelPasillo.add(panelFlecha);
-				        panelFlecha.setVisible(true);
-
-				        panelPasillo.add(panelAbrirInven);
-				        panelAbrirInven.setVisible(true);
-				    }
+		    } else if (panelAtico.isVisible() || panelEspejos.isVisible() || 
+		               panelInvernadero.isVisible() || panelTeatro.isVisible()) {
+		        panelAtico.setVisible(false);
+		        panelEspejos.setVisible(false);
+		        panelInvernadero.setVisible(false);
+		        panelTeatro.setVisible(false);
+		        panelPasillo.setVisible(true);
+		        panelPasillo.add(panelFlecha);
+		        panelFlecha.setVisible(true);
+		        panelPasillo.add(panelAbrirInven);
+		        panelAbrirInven.setVisible(true);
+		    }
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		if (e.getSource() == botonLlave) {
 			llaveRecogida = true;
@@ -1136,10 +1154,6 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			 
 			 
 		 }
-		 
-		
-			
-		
 	
 		 if (e.getSource() == cogerValv) {
 			    panelValvIncl.setVisible(false);
@@ -1365,44 +1379,68 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		 }
 		 
 		 if (e.getSource() == botonReloj) {
-			 
-			 panelCajon.setVisible(false);
-			 panelLibroSuelo.setVisible(false);
-			 panelLibroAb.setVisible(false);
-			 panelReloj.setVisible(true);
-			 
-			 InventarioSistema.inventario.add(
-				        new Item("Reloj", "/recursos/reloj.png", 50,50)
-				    );
-			 panelReloj.add(panelFlecha);
-			panelFlecha.setVisible(true);
-					
-			panelReloj.add(panelAbrirInven);
-			panelAbrirInven.setVisible(true);
-		 }
+			    panelCajon.setVisible(false);
+			    botonReloj.setVisible(false);
+			    panelReloj.setVisible(true);
+			    
+			    InventarioSistema.inventario.add(
+			        new Item("Reloj", "/recursos/reloj.png", 50, 50)
+			    );
+			    panelReloj.add(panelFlecha);
+			    panelFlecha.setVisible(true);
+			    panelReloj.add(panelAbrirInven);
+			    panelAbrirInven.setVisible(true);
+			    
+			    if (!relojPuesto) {
+			    	ponerReloj.setVisible(true);
+			    	ponerReloj.setEnabled(true);
+			    	setComponentZOrder(ponerReloj, 0);
+			    }
+			}
 		 
 		 if (e.getSource() == ponerReloj) {
-			 if(tieneItem("Reloj")) {
-				 panelCajon.setVisible(false);
-				 panelLibroSuelo.setVisible(false);
-				 panelLibroAb.setVisible(false);
-				 panelReloj.setVisible(false);
-				 
-				 
-				 panelRelojRojo.setVisible(true);
-				 panelRelojBol.setBounds(500,470,100,100);
-				 panelRelojRojo.add(panelRelojBol);
-				 panelRelojBol.setVisible(true);
-				 
-				 panelRelojRojo.add(panelFlecha);
-				 panelFlecha.setVisible(true);
-							
-				 panelRelojRojo.add(panelAbrirInven);
-				 panelAbrirInven.setVisible(true);
-				 
-				 eliminarItem("Reloj");
-			 }
+			    if (tieneItem("Reloj") && !relojPuesto) {
+			        relojPuesto = true;
+			        ponerReloj.setVisible(false);
+			        ponerReloj.setEnabled(false);
+			        estadoReloj = "rojo";
+			        panelReloj.setVisible(false); 
+			        panelCajon.setVisible(false);
+			        panelLibroSuelo.setVisible(false);
+			        panelLibroAb.setVisible(false);
+
+			        panelRelojRojo.setVisible(true);
+			        panelRelojBol.setBounds(500,470,100,100);
+			        panelRelojRojo.add(panelRelojBol);
+			        panelRelojBol.setVisible(true);
+
+			        panelRelojRojo.add(panelFlecha);
+			        panelFlecha.setVisible(true);
+
+			        panelRelojRojo.add(panelAbrirInven);
+			        panelAbrirInven.setVisible(true);
+			        if (relojPuesto) ponerReloj.setVisible(false);
+
+			        eliminarItem("Reloj");
+			    }
+			}
+		 
+		 if (e.getSource() == botonHabRel) {
+			 estadoReloj = "verde";
+			 ponerReloj.setVisible(false);
+			 ponerReloj.setEnabled(false);
+			 panelRelojRojo.setVisible(false);
+			 panelReloj.setVisible(false);
+			 panelRelojVerde.setVisible(true);
 			 
+			 panelRelojVerde.add(panelRelojBol);
+			 panelRelojBol.setVisible(true);
+			 
+			 panelRelojVerde.add(panelFlecha);
+			 panelFlecha.setVisible(true);
+						
+			 panelRelojVerde.add(panelAbrirInven);
+			 panelAbrirInven.setVisible(true);
 		 }
 		 
 	}

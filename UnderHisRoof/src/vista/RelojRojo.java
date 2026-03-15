@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 public class RelojRojo extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Override
 	public void paint(Graphics g) {
 		Dimension dimension = this.getSize();
@@ -18,5 +18,6 @@ public class RelojRojo extends JPanel {
 		setOpaque(false);
 		super.paintChildren(g);
 	}
+	
 
 }
