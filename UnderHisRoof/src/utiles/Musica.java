@@ -322,6 +322,59 @@ public class Musica {
 				timer.start();
 		 }
 		 
+		 public static void secuenciaGolpe(){
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/audio/caminando.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            
+		            clip.start();
+		            
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			 
+			 Timer timer = new Timer (2500, e ->{
+				 try {
+
+			            URL url = Musica.class.getResource("/recursos/audio/golpe.wav");
+
+			            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+			            Clip clip = AudioSystem.getClip();
+			            clip.open(audio);
+			            
+			            clip.start();
+			            
+			        } catch (Exception i) {
+			            i.printStackTrace();
+			        }
+			 });
+			 timer.setRepeats(false);
+			 timer.start();
+		 }
+		 
+		 public static void suspense() {
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/audio/suspense.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            
+		            clip.start();
+		            
+		        } catch (Exception i) {
+		            i.printStackTrace();
+		        }
+		 }
+		 
 		 
 		 
 		 
