@@ -63,6 +63,9 @@ public class FramePrincipal extends JFrame implements ActionListener {
 	private VentanaAt panelVentanaAt = new VentanaAt();
 	private Continuara continuara = new Continuara();
 	private PantallaNegro negro = new PantallaNegro();	
+	private Letras2 letras2 = new Letras2();
+	private Frase3 letras3 = new Frase3();
+	
 	//JDialog
 	Inventario inventario1 = new Inventario(this);
 	
@@ -342,6 +345,17 @@ public class FramePrincipal extends JFrame implements ActionListener {
         add(negro);
         negro.setVisible(false);
         
+        //Segunda frase
+        letras2.setBounds(418,600,263,70);
+        letras2.setLayout(null);
+        add(letras2);
+        letras2.setVisible(false);
+        
+        //Tercera frase
+        letras3.setBounds(341,375,417,50);
+        letras3.setLayout(null);
+        add(letras3);
+        letras3.setVisible(false);
 		//BOTONES
 		
 		//Start Game
@@ -741,6 +755,11 @@ public class FramePrincipal extends JFrame implements ActionListener {
 			        panelLibroSuelo.setVisible(false);
 			        panelRelojRojo.setVisible(false);
 			        panelRelojVerde.setVisible(false);
+			        ponerReloj.setVisible(false);
+			        botonHabRel.setVisible(false);
+			        abrirLibro.setVisible(false);
+			        botonCajon.setVisible(false);
+			        Musica.muchoRuido();
 			        
 					panelRelojSinLuz.setVisible(true);
 					
@@ -761,7 +780,24 @@ public class FramePrincipal extends JFrame implements ActionListener {
 						panelPag2.setVisible(false);
 						panelRelojRojo.setVisible(false);
 				        panelRelojVerde.setVisible(false);
+				        ponerReloj.setVisible(true);
+				        libroSuelo.setVisible(true);
+				        abrirLibro.setVisible(true);
+				        botonCajon.setVisible(true);
+				        botonReloj.setVisible(true);
 						panelReloj.setVisible(true);
+						
+						
+						panelReloj.add(letras2);
+						letras2.setVisible(true);
+						
+						Timer timer3 = new Timer(2000, o ->{
+							letras2.setVisible(false);
+						});
+						timer3.setRepeats(false);
+						timer3.start();
+						
+						
 						
 						panelReloj.add(panelFlecha);
 						panelFlecha.setVisible(true);
@@ -779,7 +815,18 @@ public class FramePrincipal extends JFrame implements ActionListener {
 						panelPag2.setVisible(false);
 				        panelRelojVerde.setVisible(false);
 						panelReloj.setVisible(false);
+						botonHabRel.setVisible(true);
+						libroSuelo.setVisible(true);
 						panelRelojRojo.setVisible(true);
+						
+						panelRelojRojo.add(letras2);
+						letras2.setVisible(true);
+						
+						Timer timer3 = new Timer(2000, o ->{
+							letras2.setVisible(false);
+						});
+						timer3.setRepeats(false);
+						timer3.start();
 						
 						panelRelojRojo.add(panelFlecha);
 						panelFlecha.setVisible(true);
@@ -797,7 +844,17 @@ public class FramePrincipal extends JFrame implements ActionListener {
 						panelPag2.setVisible(false);
 						panelReloj.setVisible(false);
 						panelRelojRojo.setVisible(false);
+						libroSuelo.setVisible(true);
 				        panelRelojVerde.setVisible(true);
+				        
+				        panelRelojVerde.add(letras2);
+						letras2.setVisible(true);
+						
+						Timer timer3 = new Timer(2000, o ->{
+							letras2.setVisible(false);
+						});
+						timer3.setRepeats(false);
+						timer3.start();
 				        
 				        panelRelojVerde.add(panelFlecha);
 				        panelFlecha.setVisible(true);
@@ -944,7 +1001,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		    	botonVentanaAt.setVisible(false);
 		    	panelAtico.setVisible(true);
 		    	
-		    	Timer timer = new Timer(2000, i ->{
+		    	Timer timer = new Timer(1000, i ->{
 		    		Musica.secuenciaGolpe();
 		    	});
 		    	timer.setRepeats(false);
@@ -958,7 +1015,7 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		    	timer2.setRepeats(false);
 		    	timer2.start();
 		    	
-		    	Timer timer3 = new Timer(16500, i ->{
+		    	Timer timer3 = new Timer(14500, i ->{
 		    		continuara.setVisible(true);
 		    	});
 		    	timer3.setRepeats(false);
@@ -1431,6 +1488,16 @@ public class FramePrincipal extends JFrame implements ActionListener {
 		 if (e.getSource() == botonVentanaAt) {
 			 panelAtico.setVisible(false);
 			 panelVentanaAt.setVisible(true);
+			 
+			 panelVentanaAt.add(letras3);
+				letras3.setVisible(true);
+				
+				Timer timer3 = new Timer(4000, o ->{
+					letras3.setVisible(false);
+				});
+				timer3.setRepeats(false);
+				timer3.start();
+			 
 			 
 			 panelVentanaAt.add(panelFlecha);
 			 panelFlecha.setVisible(true);

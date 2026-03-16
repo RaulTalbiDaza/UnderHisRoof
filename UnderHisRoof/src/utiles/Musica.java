@@ -338,7 +338,7 @@ public class Musica {
 		            e.printStackTrace();
 		        }
 			 
-			 Timer timer = new Timer (2500, e ->{
+			 Timer timer = new Timer (2000, e ->{
 				 try {
 
 			            URL url = Musica.class.getResource("/recursos/audio/golpe.wav");
@@ -347,6 +347,8 @@ public class Musica {
 
 			            Clip clip = AudioSystem.getClip();
 			            clip.open(audio);
+			            FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			            control.setValue(-20.0f);
 			            
 			            clip.start();
 			            
@@ -367,6 +369,27 @@ public class Musica {
 
 		            Clip clip = AudioSystem.getClip();
 		            clip.open(audio);
+		            FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		            control.setValue(-20.0f);
+		            
+		            clip.start();
+		            
+		        } catch (Exception i) {
+		            i.printStackTrace();
+		        }
+		 }
+		 
+		 public static void muchoRuido() {
+			 try {
+
+		            URL url = Musica.class.getResource("/recursos/audio/mucho-ruido.wav");
+
+		            AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+
+		            Clip clip = AudioSystem.getClip();
+		            clip.open(audio);
+		            FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		            control.setValue(-10.0f);
 		            
 		            clip.start();
 		            
