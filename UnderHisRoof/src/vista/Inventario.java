@@ -136,7 +136,6 @@ public class Inventario extends JDialog implements ActionListener{
     	        botonDiario.setVisible(false);
     	    }
 
-    	    // Resto del código igual...
     	    for (int i = 0; i < 9; i++) {
     	        JLabel celda = new JLabel();
     	        celda.setOpaque(false);
