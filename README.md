@@ -1,117 +1,81 @@
-# Under His Roof
-
-*Un escape room narrativo de misterio psicológico.*
-
----
-
-## 📖 Descripción
-
-**Under His Roof** es un juego de escape room en el que el jugador despierta atrapado en una misteriosa casa llena de mecanismos, relojes y espejos.
-
-A medida que avanza por las distintas habitaciones, el jugador debe resolver acertijos utilizando los objetos del entorno y las pistas que encuentra en diarios y documentos.
-
-Sin embargo, la casa no es una prisión cualquiera.  
-Cada habitación ha sido diseñada como parte de un experimento.
+# 🔐 Under His Roof
+*A psychological mystery escape room.*
 
 ---
 
-## 🧠 Historia
+## 📖 Description
 
-El protagonista despierta encerrado en el sótano de una antigua casa sin recordar cómo llegó allí.
+**Under His Roof** is an escape room game where the player wakes up trapped in a mysterious house full of mechanisms, clocks and mirrors.
 
-Mientras intenta escapar resolviendo distintos puzzles, descubre documentos pertenecientes a un arquitecto que diseñó la casa como parte de un experimento relacionado con la mente humana.
+As they progress through different rooms, the player must solve puzzles using objects found in the environment and clues hidden in diaries and documents.
 
-Este arquitecto trabajaba anteriormente para una organización que investigaba fenómenos anómalos, entre ellos un evento conocido como **Helios Event**, un apagón capaz de alterar la realidad.
-
-Tras ser expulsado de la organización, decidió continuar su investigación por su cuenta.
-
-La casa se convirtió entonces en el escenario de su experimento.
-
-El jugador cree que está intentando escapar, pero poco a poco descubre que cada habitación forma parte de un proceso diseñado para él.
+The house, however, is no ordinary prison.
+Every room has been designed as part of an experiment.
 
 ---
 
-## 🎮 Jugabilidad
+## 🧠 Story
 
-El juego combina exploración, puzzles y narrativa ambiental.
+The protagonist wakes up locked in the basement of an old house with no memory of how they got there.
 
-El jugador deberá:
+While trying to escape by solving puzzles, they discover documents belonging to an architect who designed the house as part of an experiment related to the human mind.
 
-- Explorar cada habitación
-- Interactuar con objetos del entorno
-- Recoger objetos útiles en el inventario
-- Resolver acertijos mecánicos
-- Descubrir pistas ocultas en diarios y documentos
+This architect previously worked for an organization researching anomalous phenomena, including an event known as the **Helios Event** — a blackout capable of altering reality.
 
-Cada puzzle está integrado en el entorno y relacionado con el significado de la habitación.
+After being expelled from the organization, he decided to continue his research alone.
+The house became the setting for his experiment.
 
----
-
-## 🏠 Habitaciones
-
-### Sótano
-
-La primera zona del juego.
-
-Aquí el jugador debe reparar una maquinaria industrial utilizando válvulas y herramientas para restablecer el sistema y poder salir de la habitación.
+The player believes they are trying to escape — but slowly discovers that every room is part of a process designed specifically for them.
 
 ---
 
-### Sala de los Relojes
+## 🎮 Gameplay
 
-Una habitación dominada por un gran reloj central.
+The game combines exploration, puzzles and environmental storytelling.
 
-El jugador debe encontrar las piezas que faltan del mecanismo y reconstruir el sistema para desbloquear el siguiente paso.
+The player must:
+- Explore each room
+- Interact with objects in the environment
+- Collect useful items in the inventory
+- Solve mechanical puzzles
+- Discover clues hidden in diaries and documents
 
----
-
-### Sala de los Espejos
-
-Una habitación llena de reflejos donde no todo es lo que parece.
-
-El jugador debe observar los espejos cuidadosamente para descubrir pistas ocultas y acceder a los objetos necesarios para avanzar.
-
-(Este no aparece debido al apagon que se produce por el Helios, que daña el mecanismo y abre la puerta incorrecta de la sala de los relojes. Esto es explicado en la segunda parte del juego. PROXIMAMENTE...)
----
-
-### Ático
-
-La última habitación del juego.
-
-Aquí el jugador encuentra el diario personal del arquitecto y descubre más información sobre el experimento.
-
-Al mirar por la ventana observa algo imposible: una casa idéntica frente a la suya y alguien mirándolo desde ella.
-
-Ese alguien… es él mismo.
+Each puzzle is integrated into the environment and connected to the meaning of the room.
 
 ---
 
-## ⭐ Características
+## 🏠 Rooms
 
-- Juego de puzzles tipo escape room
-- Narrativa ambiental a través de documentos y diarios
-- Sistema de inventario para recoger objetos
-- Interacción con el entorno
-- Ambientación de misterio psicológico
-- Historia que se revela progresivamente
----
+### Basement
+The first area of the game. The player must repair industrial machinery using valves and tools to restore the system and escape the room.
 
-## 🛠️ Desarrollo
+### Clock Room
+A room dominated by a large central clock. The player must find the missing mechanism pieces and reconstruct the system to unlock the next step.
 
-Este proyecto ha sido desarrollado con el objetivo de combinar puzzles interactivos con una narrativa que se descubre a través del entorno.
+### Mirror Room
+A room full of reflections where nothing is what it seems. The player must carefully observe the mirrors to find hidden clues and access the objects needed to progress.
 
-La intención es crear una experiencia donde el jugador no solo resuelva acertijos, sino que también reconstruya la historia detrás de la casa.
+*(This room is inaccessible due to the blackout caused by the Helios Event, which damages the mechanism and opens the wrong door in the Clock Room. This is explained in Part 2. COMING SOON...)*
 
----
+### Attic
+The final room. Here the player finds the architect's personal diary and learns more about the experiment.
 
-## 👨‍💻 Autor
+Looking out the window, they see something impossible: an identical house across the street, with someone staring back at them.
 
-Proyecto desarrollado por:
-
-**[RAÚL TALBI DAZA Y SELENE MUÑOZ BOZA]**
+That someone… is themselves.
 
 ---
 
-## 📜 Licencia
+## ⭐ Features
+- Escape room puzzle gameplay
+- Environmental storytelling through documents and diaries
+- Inventory system for collecting objects
+- Interactive environment
+- Psychological mystery atmosphere
+- Progressively revealed narrative
 
-Este proyecto ha sido desarrollado con fines educativos.
+---
+
+## 🛠️ Development
+
+This project was built with the goal of combining interactive puzzles with a narrative discovered through the environment. The intention is to create an experi
